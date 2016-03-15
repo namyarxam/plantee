@@ -1,12 +1,12 @@
 'use strict';
 
-const express = require('express');
-const db      = require('../db/pg.js');
-const users   = express.Router();
+var express = require('express');
+var db      = require('../db/pg.js');
+var users   = express.Router();
 
 
 /* EXPRESS USER ROUTES */
-users.post('/login', db.loginUser, (req, res) => {
+users.post('/login', db.loginUser, function(req, res) {
 	req.session.user = res.rows;
 	req.session.save();
 })

@@ -3,42 +3,28 @@
 /* REQUIRES */
 require('dotenv').config();
 
-const path 					 = require('path');
-const pg 						 = require('pg');
-const express 		   = require('express');
-const morgan 			   = require('morgan');
-const bodyParser 		 = require('body-parser');
-const db 					   = require('./db/pg.js');
-const request 			 = require('request');
-const methodOverride = require('method-override');
-const session 			 = require('express-session');
-const favicon				 = require('serve-favicon');
-const pgSession 		 = require('connect-pg-simple')(session);
-const userRoutes     = require('./routes/users');
+var path 					 = require('path');
+var pg 						 = require('pg');
+var express 		   = require('express');
+var morgan 			   = require('morgan');
+var bodyParser 		 = require('body-parser');
+var db 					   = require('./db/pg.js');
+var request 			 = require('request');
+var methodOverride = require('method-override');
+var favicon				 = require('serve-favicon');
+var userRoutes     = require('./routes/users');
 
-const app = express();
+var app = express();
 
 /* PSQL Connection */
-const config = {
+var config = {
 
 }
 
 /* ROUTE PATHS */
 app.use('/users', userRoutes);
 
-// const ROUTENAME = require(path.join(__dirname, 'routes', 'ROUTENAME'));
-
-/* EXPRESS SESSIONS */
-app.use(session({
-	store: new pgSession({
-		pg: pg,
-		conString: config,
-		tablename: 'session'
-	}),
-	secret: 'Porzingis',
-	resave: false,
-	cookie: { maxAge: 30 * 24 * 60 * 1000 } // 30 day cookie
-}));
+// var ROUTENAME = require(path.join(__dirname, 'routes', 'ROUTENAME'));
 
 /* EXPRESS-APP USAGE */
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
@@ -53,13 +39,13 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 
 /* EXPRESS ROUTES */
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
 	res.render('home.ejs');
 });
 
 /* SERVER CONFIGURATION */
-const port 	 = process.env.PORT || 3000;
-const server = app.listen(port, () => console.log(`Server initialized on // ${new Date()}`));
+var port 	 = process.env.PORT || 3000;
+var server = app.listen(port, () => console.log(`Server initialized on // ${new Date()}`));
 
 
 

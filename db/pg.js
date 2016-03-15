@@ -1,22 +1,22 @@
 'use strict';
 
 /* REQUIRES */
-const pg      = require('pg');
-const bcrypt  = require('bcrypt');
-const salt    = require('salt');
-const session = require('express-session');
+var pg      = require('pg');
+var bcrypt  = require('bcrypt');
+var salt    = require('salt');
+var session = require('express-session');
 
 /* PSQL Connection */
-const config = {
+var config = {
 
 }
 
 /* SESSION ROUTES */
-let loginUser = (req, res, next) => {
-	let email 	 = req.body.email;
-	let password = req.body.password;
+function loginUser(req, res, next) {
+	var email 	 = req.body.email;
+	var password = req.body.password;
 
-	pg.connect(config, (err, client, done) => {
+	pg.connect(config, function(err, client, done) {
 		// Handle connection errors.
 		if(err) {
 			done();
@@ -25,14 +25,14 @@ let loginUser = (req, res, next) => {
 		}
 		client.query('SELECT * FROM users WHERE email lIKE $1;',
 								[email],
-								(err, results) => {
+								function(err, results) {
 									done();
-									if (err) {
+									if(err) {
 										return console.error('error running query', err);
 									}
-									if (results.rows.length === 0) {
+									if(results.rows.length === 0) {
 										res.status(204).json({ success: true, data: 'no content' });
-									} else if (bcrypt.compareSync(password, results.rows[0].password_digest)) {
+									} else if(bcrypt.compareSync(password, results.rows[0].password_digest)) {
 										res.rows = results.rows[0];
 										next();
 									}
@@ -40,21 +40,21 @@ let loginUser = (req, res, next) => {
 	});
 }
 
-let createSecure = (email, password, callback) => {
+function createUser(email, password, callback) {
 	// Hashing the password given by the user @ signup.
-	bcrypt.genSalt((err, salt) => {
-		bcrypt.hash(password, salt, (err, hash) => {
+	bcrypt.genSalt(function(err, salt) {
+		bcrypt.hash(password, salt, function(err, hash) {
 			// This callback saves the user to our DB w/ the hashed password. 
 			callback(email, hash);
 		})
 	})
 }
 
-let createUser = (req, res, next) => {
+function createUser(req, res, next) {
 	createSecure(req.body.email, req.body.password, saveUser);
 
-	let saveuser = (email, hash) => {
-		pg.connect(config, (err, client, done) => {
+	function saveUser(email, hash) {
+		pg.connect(config, function(err, client, done) {
 			// Handle connection errors. 
 			if (err) {
 				done();
@@ -63,7 +63,7 @@ let createUser = (req, res, next) => {
 			}
 			client.query('INSERT INTO users (email, password_digest) VALUES ($1, $2);',
 									[email, hash],
-									(err, results) => {
+									function (err, results) {
 										done();
 										if(err) {
 											return console.error('error running query', err);
