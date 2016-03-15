@@ -3,6 +3,7 @@
 
 
 Welcome to e-Notary
+Make Custom Legally Binding Contracts Online
 
 e-Notary is a platform for connecting two parties who wish to create a legally binding contract between themselves. The user who wishes to create a contract(heretofore known as "the Originator") creates an e-Notary account and a user profile. The profile page contains button that allows users to create a customized contract with the click of a button.
 
