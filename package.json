@@ -37,6 +37,7 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.1",
+    "request": "^2.69.0",
     "salt": "^0.5.5",
     "twilio": "^2.9.0"
   }
