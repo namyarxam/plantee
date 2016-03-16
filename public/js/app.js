@@ -17,8 +17,6 @@ const Login = require('./components/login.js')
 const Logout = require('./components/logout.js')
 const Signup = require('./components/signup.js')
 
-
-
 const App = React.createClass({
   getInitialState : function() {
     return {
@@ -67,10 +65,8 @@ var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App} >
       <Route path="login" component={Login} />
-
       <Route path="logout" component={Logout} />
       <Route path="signup" component={Signup} />
-
       <Route path="about" component={About} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>

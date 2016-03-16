@@ -26,6 +26,7 @@ module.exports = {
   },
 
   getToken() {
+    console.log('auth.js:29: ' + localStorage.token);
     return localStorage.token
   },
 
@@ -42,7 +43,7 @@ module.exports = {
   onChange() {}
 }
 
-function loginRequest(email, pass, cb){
+function loginRequest(email, pass, cb) {
   $.post('users/login', {email: email, password: pass})
     .done((data)=>{
       cb({

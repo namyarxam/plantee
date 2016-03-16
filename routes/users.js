@@ -1,7 +1,7 @@
 const express     = require('express');
 const users       = express.Router();
 const db          = require('../db/pg');
-const secret      = 'my sweet bowie secret';
+const secret      = 'porzingis';
 const expressJWT  = require('express-jwt');
 const jwt         = require('jsonwebtoken')
 
@@ -10,7 +10,6 @@ users.route('/')
     res.json({data: 'success'})
   })
   .post(db.createUser, (req, res)=>{
-    console.log('post',req.body)
     res.status(201).json({data: 'success'});
   })
 

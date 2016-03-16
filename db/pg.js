@@ -3,12 +3,15 @@ const bcrypt      = require('bcrypt');
 const salt        = bcrypt.genSaltSync(10);
 const session     = require('express-session');
 
+require('dotenv').config();
+
+
 const cn = {
     host: 'localhost', // 'localhost' is the default;
     port: 5432, // 5432 is the default;
-    database: 'tokens_test',
-    user: 'Adam1',
-    password: 'Move2core'
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD
 };
 
 const db = pgp(cn)

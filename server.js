@@ -1,53 +1,31 @@
 'use strict';
+const express     = require('express');
+const logger      = require('morgan');
+const path        = require('path');
+const bodyParser  = require('body-parser');
+const db          = require('./db/pg');
+const pgp         = require('pg-promise');
+const bcrypt      = require('bcrypt');
+const salt        = bcrypt.genSaltSync(10);
+const hash        = bcrypt.hashSync('B4c0/\/', salt);
+const dotenv      = require('dotenv');
 
-/* REQUIRES */
-require('dotenv').config();
+const app       = express();
 
-var path 					 = require('path');
-var pg 						 = require('pg');
-var express 		   = require('express');
-var morgan 			   = require('morgan');
-var bodyParser 		 = require('body-parser');
-var db 					   = require('./db/pg.js');
-var request 			 = require('request');
-var methodOverride = require('method-override');
-var favicon				 = require('serve-favicon');
-var userRoutes     = require('./routes/users');
 
-var app = express();
-
-/* PSQL Connection */
-var config = {
-
-}
-
-/* ROUTE PATHS */
-app.use('/users', userRoutes);
-
-// var ROUTENAME = require(path.join(__dirname, 'routes', 'ROUTENAME'));
-
-/* EXPRESS-APP USAGE */
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(morgan('dev'));
-app.use(express.static('./public'));
-app.use(methodOverride('_method'));
+const usersRoutes     = require('./routes/users');
 
-/* VIEW ENGINE DECLARATION */
-app.set('views', './views');
-app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname,'public')))
 
-/* EXPRESS ROUTES */
-app.get('/', function(req, res) {
-	res.render('home.ejs');
-});
-
-/* SERVER CONFIGURATION */
-var port 	 = process.env.PORT || 3000;
-var server = app.listen(port, () => console.log(`Server initialized on // ${new Date()}`));
+app.use(logger('dev'));
+dotenv.load();
+app.use('/users', usersRoutes);
 
 
+app.get('/', (req, res)=>{
+  res.sendFile('index.html')
+})
 
-
-
+app.listen(3000 , ()=> console.log(`Server initialized on // ${new Date()}`));
