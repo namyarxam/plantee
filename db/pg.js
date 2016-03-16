@@ -1,78 +1,66 @@
-'use strict';
+const pgp         = require('pg-promise')({});
+const bcrypt      = require('bcrypt');
+const salt        = bcrypt.genSaltSync(10);
+const session     = require('express-session');
 
-/* REQUIRES */
-var pg      = require('pg');
-var bcrypt  = require('bcrypt');
-var salt    = require('salt');
-var session = require('express-session');
+const cn = {
+    host: 'localhost', // 'localhost' is the default;
+    port: 5432, // 5432 is the default;
+    database: 'tokens_test',
+    user: 'Adam1',
+    password: 'Move2core'
+};
 
-/* PSQL Connection */
-var config = {
+const db = pgp(cn)
 
+function createSecure(email, password, callback){
+  bcrypt.genSalt(password, salt, function(err, hash){
+    bcrypt.hash(password, salt, function(err, hash) {
+      callback(email, hash)
+    })
+  })
 }
 
-/* SESSION ROUTES */
-function loginUser(req, res, next) {
-	var email 	 = req.body.email;
-	var password = req.body.password;
 
-	pg.connect(config, function(err, client, done) {
-		// Handle connection errors.
-		if(err) {
-			done();
-			console.log(err);
-			return res.status(500).json({ success: false, data: err })
-		}
-		client.query('SELECT * FROM users WHERE email lIKE $1;',
-								[email],
-								function(err, results) {
-									done();
-									if(err) {
-										return console.error('error running query', err);
-									}
-									if(results.rows.length === 0) {
-										res.status(204).json({ success: true, data: 'no content' });
-									} else if(bcrypt.compareSync(password, results.rows[0].password_digest)) {
-										res.rows = results.rows[0];
-										next();
-									}
-								});
-	});
-}
-
-function createUser(email, password, callback) {
-	// Hashing the password given by the user @ signup.
-	bcrypt.genSalt(function(err, salt) {
-		bcrypt.hash(password, salt, function(err, hash) {
-			// This callback saves the user to our DB w/ the hashed password. 
-			callback(email, hash);
-		})
-	})
-}
 
 function createUser(req, res, next) {
-	createSecure(req.body.email, req.body.password, saveUser);
+  createSecure(req.body.email, req.body.password, saveUser)
 
-	function saveUser(email, hash) {
-		pg.connect(config, function(err, client, done) {
-			// Handle connection errors. 
-			if (err) {
-				done();
-				console.log(err);
-				return res.status(500).json({ success: false, data: err});
-			}
-			client.query('INSERT INTO users (email, password_digest) VALUES ($1, $2);',
-									[email, hash],
-									function (err, results) {
-										done();
-										if(err) {
-											return console.error('error running query', err);
-										}
-										next();
-									});
-		});
-	}
+  function saveUser(email, hash) {
+    db.none('INSERT INTO users (email, password_digest) VALUES ($1, $2) returning *', [email, hash])
+    .then((data)=>{
+      next()
+    })
+    .catch(()=>{
+      console.log('error signing up')
+      next()
+    })
+  }
 }
 
-module.exports.createUser = createUser;
-module.exports.loginUser  = loginUser;
+function loginUser(req, res, next){
+  var email = req.body.email;
+  var password = req.body.password;
+  db.one('SELECT * FROM users WHERE email LIKE ($1);', [email])
+    .then((data)=>{
+      console.log(data)
+      if (bcrypt.compareSync(password, data.password_digest)){
+        res.rows = data
+        next()
+      }
+      res.status(401).json({data: "password and email do not match"})
+        next()
+    })
+    .catch(()=>{
+      console.error('error finding users')
+    })
+}
+
+
+
+
+
+module.exports.db = db;
+module.exports.pgp = pgp;
+module.exports.loginUser = loginUser
+module.exports.createUser = createUser
