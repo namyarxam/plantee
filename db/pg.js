@@ -1,7 +1,7 @@
 const pgp         = require('pg-promise')({});
 const bcrypt      = require('bcrypt');
 const salt        = bcrypt.genSaltSync(10);
-const session     = require('express-session');
+
 
 require('dotenv').config();
 

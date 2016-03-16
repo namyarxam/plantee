@@ -10,15 +10,20 @@ const salt        = bcrypt.genSaltSync(10);
 const hash        = bcrypt.hashSync('B4c0/\/', salt);
 const dotenv      = require('dotenv');
 
-// Twilio Credentials 
+// Twilio Credentials
 var accountSid = process.env.ACCOUNT_SID;
-var authToken = process.env.AUTH_TOKEN; 
- 
-//require the Twilio module and create a REST client 
-var client = require('twilio')(accountSid, authToken); 
- 
+var authToken = process.env.AUTH_TOKEN;
+
+//require the Twilio module and create a REST client
+var client = require('twilio')(accountSid, authToken);
+
 
 const app       = express();
+
+/* TWILIO FUNCTION CALL WITH DYNAMIC PARAMETERS */
+// const twilio = require('./public/js/twil.js');
+// twilio.sendText('7185780771', 'yo we out!');
+
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
