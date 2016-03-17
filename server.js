@@ -21,8 +21,8 @@ var client = require('twilio')(accountSid, authToken);
 const app       = express();
 
 /* TWILIO FUNCTION CALL WITH DYNAMIC PARAMETERS */
-// const twilio = require('./public/js/twil.js');
-// twilio.sendText('7185780771', 'yo we out!');
+const twilio = require('./public/js/twil.js');
+twilio.sendText('+9177332565', 'testmessage');
 
 
 
@@ -39,6 +39,6 @@ app.use('/users', usersRoutes);
 
 app.get('/', (req, res)=>{
   res.sendFile('index.html')
-})
+});
 
 app.listen(3000 , ()=> console.log(`Server initialized on // ${new Date()}`));
