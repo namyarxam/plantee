@@ -16,14 +16,15 @@ const Link = ReactRouter.Link;
 const browserHistory = ReactRouter.browserHistory;
 
 /* Relative paths to external components */
-const auth = require('./helpers/auth.js')
-const requireAuth = require('./helpers/requireauth.js')
-const About = require('./components/about.js')
-const Dashboard = require('./components/dashboard.js')
-const Login = require('./components/login.js')
-const Logout = require('./components/logout.js')
-const Signup = require('./components/signup.js')
-const Header = require('./components/header.js')
+const auth = require('./helpers/auth.js');
+const requireAuth = require('./helpers/requireauth.js');
+const About = require('./components/about.js');
+const Dashboard = require('./components/dashboard.js');
+const Login = require('./components/login.js');
+const Logout = require('./components/logout.js');
+const Signup = require('./components/signup.js');
+const Header = require('./components/header.js');
+const Create = require('./components/create.js');
 
 /* React App Creation */
 const App = React.createClass({
@@ -48,20 +49,21 @@ const App = React.createClass({
   render : function() {
     return (
       <div className="row">
-      <Header />
+      <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
-          <li>
             {this.state.loggedIn ? (
-              <Link to="/logout">Log out</Link>
+              <div>
+                <li><Link to="/logout">Log out</Link> </li>
+                <li><Link to="/create">Create Your Plantee</Link></li>
+             </div>
             ) : (
-              <Link to="/login">Sign in</Link>
+              <div>
+                <li><Link to="/login">Log In</Link></li>
+                <li><Link to="/signup">Sign up</Link></li>
+             </div>
             )}
-          </li>
-          <li><Link to="/signup">Sign up</Link></li>
-
           <li><Link to="/about">About</Link></li>
-          <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
@@ -70,18 +72,20 @@ const App = React.createClass({
   }
 })
 
-
-// ReactRouter initialization and configuration. 
+/* React router initialization */
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App} >
     <Route path="header" component={Header} />
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
+      <Route path="create" component={Create} />
+
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
   </Router>
 )
-ReactDOM.render(<App />, document.querySelector('#container'))
+
+ReactDOM.render(routes, document.querySelector('#container'))
