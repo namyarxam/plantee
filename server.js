@@ -12,7 +12,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 /* DB: Relative path to our back-end postgreSQL file */
 const db = require('./db/pg');
-/* PG-PROMISE: Query formatting / backend manipulation for postgreSQL */ 
+/* PG-PROMISE: Query formatting / backend manipulation for postgreSQL */
 const pgp = require('pg-promise')({});
 /* BCRYPT: Module for password hashing methods */
 const bcrypt = require('bcrypt');
@@ -44,6 +44,10 @@ app.use('/users', usersRoutes);
 /* HOME ROUTE */
 app.get('/', (req, res)=>{
   res.sendFile('index.html')
+});
+
+app.get('*', (req, res)=>{
+  res.render('index.html')
 });
 
 /* SERVER INITIALIZATION */

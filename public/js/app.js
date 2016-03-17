@@ -6,7 +6,7 @@
 const React = require('react');
 // React-DOM for HTML rendering
 const ReactDOM = require('react-dom');
-// React router for dynamic pathing. Has several component features that need to be required to use. 
+// React router for dynamic pathing. Has several component features that need to be required to use.
 const ReactRouter = require('react-router');
 // 4 components pulled from ReactRouter:
 const Router = ReactRouter.Router;
@@ -25,13 +25,17 @@ const Logout = require('./components/logout.js');
 const Signup = require('./components/signup.js');
 const Header = require('./components/header.js');
 const Create = require('./components/create.js');
+const NotFound = require('./components/notfound.js');
+const Verification = require('./components/verification.js');
+
 
 /* React App Creation */
 const App = React.createClass({
   // Declares the initial state when app is loaded
   getInitialState : function() {
     return {
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      verification: ''
     }
   },
   // Updates state when login is trigger
@@ -40,7 +44,12 @@ const App = React.createClass({
       loggedIn: loggedIn
     })
   },
-  // Login even triggered and sent to back-end 
+
+
+
+
+
+  // Login even triggered and sent to back-end
   componentWillMount : function() {
     auth.onChange = this.updateAuth
     auth.login()
@@ -80,11 +89,12 @@ var routes = (
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
       <Route path="create" component={Create} />
-
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
+      <Route path="create/verification" component={Verification} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
+    <Route path="*" component={NotFound} />
   </Router>
 )
 
