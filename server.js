@@ -20,8 +20,6 @@ const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
 /* HASH: Calls from bcrypt, salt to initiate password hash */
 const hash = bcrypt.hashSync('B4c0/\/', salt);
-/* CLIENT: Require the Twilio module and create a REST client */
-const client = require('twilio')(accountSid, authToken);
 /* TWILIO: Relative path to our twilio API methods */
 const twilio = require('./public/js/twil.js');
 /* USERROUTES: Relative path to our UserAuth Route */
@@ -30,6 +28,8 @@ const usersRoutes     = require('./routes/users');
 /* TWILIO API AUTHENTICATION */
 const accountSid = process.env.ACCOUNT_SID;
 const authToken = process.env.AUTH_TOKEN;
+/* CLIENT: Require the Twilio module and create a REST client */
+const client = require('twilio')(accountSid, authToken);
 
 /* EXPRESS APP INITIALIZATION */
 const app = express();

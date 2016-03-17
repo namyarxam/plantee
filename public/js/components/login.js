@@ -18,7 +18,7 @@ const Login = React.createClass({
 
   handleSubmit : function(event) {
     event.preventDefault()
-
+    console.log('login button pressed')
     const email = this.refs.email.value
     const pass = this.refs.pass.value
 
@@ -30,7 +30,6 @@ const Login = React.createClass({
 
       if (location.state && location.state.nextPathname) {
         this.context.router.replace(location.state.nextPathname)
-        
       } else {
         this.context.router.replace('/login')
       }
@@ -41,8 +40,8 @@ const Login = React.createClass({
     return (
       <form onSubmit={this.handleSubmit}>
         <label><input ref="email" placeholder="email" defaultValue="email@email.com" /></label>
-        <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
-        <button type="submit">login</button>
+        <label><input ref="pass" placeholder="password" /></label> <br />
+        <button type="submit" value="login">login</button>
         {this.state.error && (
           <p>Bad login information</p>
         )}

@@ -49,7 +49,7 @@ const Signup = React.createClass({
     return (
       <form onSubmit={this.handleSubmit}>
         <label><input ref="email" placeholder="email" defaultValue="email@email.com" /></label>
-        <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
+        <label><input ref="pass" placeholder="password" /></label> <br />
         <button type="submit">Sign Up</button>
         {this.state.error && (
           <p>Bad login information</p>
