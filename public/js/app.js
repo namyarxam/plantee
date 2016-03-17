@@ -16,6 +16,8 @@ const Dashboard = require('./components/dashboard.js')
 const Login = require('./components/login.js')
 const Logout = require('./components/logout.js')
 const Signup = require('./components/signup.js')
+const Header = require('./components/header.js')
+
 
 const App = React.createClass({
   getInitialState : function() {
@@ -38,6 +40,7 @@ const App = React.createClass({
   render : function() {
     return (
       <div className="row">
+      <Header />
         <section className="col s12">
         <ul>
           <li>
@@ -64,6 +67,7 @@ const App = React.createClass({
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App} >
+    <Route path="header" component={Header} />
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
       <Route path="signup" component={Signup} />
@@ -72,4 +76,4 @@ var routes = (
     </Route>
   </Router>
 )
-ReactDOM.render(routes, document.querySelector('#container'))
+ReactDOM.render(<App />, document.querySelector('#container'))
