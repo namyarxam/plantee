@@ -1,4 +1,7 @@
+/* Authentication Helper, from React.js documentation */
+/* Beginning of function exports */
 module.exports = {
+  // Initiates login and reads from localStorage token
   login(email, pass, cb) {
     cb = arguments[arguments.length - 1]
     if (localStorage.token) {
@@ -6,6 +9,7 @@ module.exports = {
       this.onChange(true)
       return
     }
+    // Sets token
     loginRequest(email, pass, (res) => {
       if (res.authenticated) {
         localStorage.token = res.token
@@ -17,32 +21,34 @@ module.exports = {
       }
     })
   },
-
+  // Initiates signup and calls helper method below 'signupRequest'
   signup(email, pass, cb){
     cb = arguments(arguments.length - 1)
     signupRequest(email, pass, (res)=>{
       cb()
     })
   },
-
+  // Obtains token from localStorage
   getToken() {
     console.log('auth.js:29: ' + localStorage.token);
     return localStorage.token
   },
-
+  // Logs out the user by deleting localStorage
   logout(cb) {
     delete localStorage.token
     if (cb) cb()
     this.onChange(false)
   },
-
+  // Returns boolean value of whether or not a token currently exists
   loggedIn() {
     return !!localStorage.token
   },
-
+  // Needed to allow onChange built-in method to function
   onChange() {}
 }
+/* End of function exports */
 
+// Takes the login request and tests credentials with stored info in back-end
 function loginRequest(email, pass, cb) {
   $.post('users/login', {email: email, password: pass})
     .done((data)=>{
@@ -59,6 +65,7 @@ function loginRequest(email, pass, cb) {
     })
 }
 
+// Takes signup request and adds new information to back-end database 
 function signupRequest(email, pass, cb) {
   $.post('/users/signup', {email: email, password: pass})
     .done((data)=>{
@@ -75,6 +82,12 @@ function signupRequest(email, pass, cb) {
     })
 }
 
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
+// NEEDS TO BE UPDATED TO A REAL BACKEND REQUEST
 function pretendRequest(email, pass, cb) {
   setTimeout(() => {
     if (email === 'joe@example.com' && pass === 'password1') {
