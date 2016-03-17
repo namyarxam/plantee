@@ -1,5 +1,3 @@
-
-
 function requireAuth(nextState, replace) {
   if (!auth.loggedIn()) {
     replace({

@@ -1,34 +1,46 @@
-const express     = require('express');
-const users       = express.Router();
-const db          = require('../db/pg');
-const secret      = 'porzingis';
-const expressJWT  = require('express-jwt');
-const jwt         = require('jsonwebtoken')
+/* GLOBAL REQUIRES - SEE `../../server.js` */
+'use strict';
+require('dotenv').config();
+const express = require('express');
+const db = require('../db/pg');
+/* SECRET: Used to manipulate token generation to our secret to increase security */
+const secret = process.env.SECRET;
+/* EXPRESSJWT: Allows for web tokens to be used in express web app's */
+const expressJWT = require('express-jwt');
+/* USERS: Express router initialization to allow this route to serve as '/users' */
+const users = express.Router();
+/* JWT: JSONWebToken - Front-end user auth module */
+const jwt = require('jsonwebtoken')
 
 users.route('/')
-  .get((req, res)=>{
-    res.json({data: 'success'})
+  // Obtain user information
+  .get((req, res) => {
+    res.json({data: 'success'});
   })
-  .post(db.createUser, (req, res)=>{
+  // Create user & store in database
+  .post(db.createUser, (req, res) => {
     res.status(201).json({data: 'success'});
   })
 
 
-  users.route('/createaccountscreen')
-    .get((req, res)=>{
-      res.json({data: 'success'})
-    })
+users.route('/createaccountscreen')
+  // Path for user account creation view
+  .get((req, res) => {
+    res.json({data: 'success'});
+  })
 
 users.route('/me')
-  .post((req, res)=>{
-    var user = jwt.sign(req.headers.authorization, secret)
-    res.json({data: 'success', agent: user})
+  // Show information of logged in user
+  .post((req, res) => {
+    let user = jwt.sign(req.headers.authorization, secret);
+    res.json({data: 'success', agent: user});
   })
 
 users.route('/login')
-  .post(db.loginUser, (req, res)=>{
-    var token = jwt.sign(res.rows, secret)
-    res.json({agent: res.rows, token: token})
+  // User login functionality - checks credentials with database
+  .post(db.loginUser, (req, res) => {
+    let token = jwt.sign(res.rows, secret);
+    res.json({agent: res.rows, token: token});
   })
 
 

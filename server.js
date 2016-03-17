@@ -1,44 +1,50 @@
+/* STRICT MODE: Allows for some ES6 functionality, doesnt allow use of undeclared constiables */
 'use strict';
-const express     = require('express');
-const logger      = require('morgan');
-const path        = require('path');
-const bodyParser  = require('body-parser');
-const db          = require('./db/pg');
-const pgp         = require('pg-promise');
-const bcrypt      = require('bcrypt');
-const salt        = bcrypt.genSaltSync(10);
-const hash        = bcrypt.hashSync('B4c0/\/', salt);
-const dotenv      = require('dotenv');
-
-// Twilio Credentials
-var accountSid = process.env.ACCOUNT_SID;
-var authToken = process.env.AUTH_TOKEN;
-
-//require the Twilio module and create a REST client
-var client = require('twilio')(accountSid, authToken);
-
-
-const app       = express();
-
-/* TWILIO FUNCTION CALL WITH DYNAMIC PARAMETERS */
-// const twilio = require('./public/js/twil.js');
-// twilio.sendText('7185780771', 'yo we out!');
-
-
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+/* DOTENV: Simple module to store and hide confidential information */
+require('dotenv').config();
+/* EXPRESS: Web app framework */
+const express = require('express');
+/* MORGAN: HTTP request logger tied to express */
+const logger = require('morgan');
+/* PATH: Extracted nodeJS 'path' module for NPM */
+const path = require('path');
+/* BODYPARSER: Middleware to parse request body for back-end */
+const bodyParser = require('body-parser');
+/* DB: Relative path to our back-end postgreSQL file */
+const db = require('./db/pg');
+/* PG-PROMISE: Query formatting / backend manipulation for postgreSQL */ 
+const pgp = require('pg-promise')({});
+/* BCRYPT: Module for password hashing methods */
+const bcrypt = require('bcrypt');
+/* SALT: First layer of password hashing - number of hash iterations */
+const salt = bcrypt.genSaltSync(10);
+/* HASH: Calls from bcrypt, salt to initiate password hash */
+const hash = bcrypt.hashSync('B4c0/\/', salt);
+/* CLIENT: Require the Twilio module and create a REST client */
+const client = require('twilio')(accountSid, authToken);
+/* TWILIO: Relative path to our twilio API methods */
+const twilio = require('./public/js/twil.js');
+/* USERROUTES: Relative path to our UserAuth Route */
 const usersRoutes     = require('./routes/users');
 
-app.use(express.static(path.join(__dirname,'public')))
+/* TWILIO API AUTHENTICATION */
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTH_TOKEN;
 
+/* EXPRESS APP INITIALIZATION */
+const app = express();
+
+/* MODULE CONFIGURATION BOUND TO EXPRESS APP */
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname,'public')))
 app.use(logger('dev'));
-dotenv.load();
 app.use('/users', usersRoutes);
 
-
+/* HOME ROUTE */
 app.get('/', (req, res)=>{
   res.sendFile('index.html')
-})
+});
 
-app.listen(3007 , ()=> console.log(`Server initialized on // ${new Date()}`));
+/* SERVER INITIALIZATION */
+app.listen(3000 , ()=> console.log(`Server initialized on // ${new Date()}`));
