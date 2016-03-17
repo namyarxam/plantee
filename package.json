@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "bundle": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d"
+    "bundle": "watchify -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "react-router": "^2.0.1",
     "request": "^2.69.0",
     "salt": "^0.5.5",
-    "twilio": "^2.9.0"
+    "twilio": "^2.9.0",
+    "watchify": "^3.7.0"
   }
 }
