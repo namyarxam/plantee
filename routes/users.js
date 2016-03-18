@@ -2,7 +2,7 @@
 'use strict';
 require('dotenv').config();
 const express = require('express');
-const db = require('../db/pg');
+const db = require('../db/users_pg');
 /* SECRET: Used to manipulate token generation to our secret to increase security */
 const secret = process.env.SECRET;
 /* EXPRESSJWT: Allows for web tokens to be used in express web app's */
@@ -10,7 +10,7 @@ const expressJWT = require('express-jwt');
 /* USERS: Express router initialization to allow this route to serve as '/users' */
 const users = express.Router();
 /* JWT: JSONWebToken - Front-end user auth module */
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 users.route('/')
   // Obtain user information
