@@ -24,11 +24,18 @@ const Create = React.createClass({
 
   },
 
+  changePage: function(event) {
+    event.preventDefault();
+    this.setState({change: !this.state.change})
+    console.log("changePage Pressed");
+
+  },
+
   render : function(){
 
     var msg;
     {if(this.state.checked) {
-      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" >
+      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" onSubmit={this.changePage} >
       <input type="Submit" value="Got It" />
        </form> </div>
     }

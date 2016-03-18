@@ -34,7 +34,7 @@ const App = React.createClass({
   getInitialState : function() {
     return {
       loggedIn: auth.loggedIn(),
-      veri: false,
+      change: true,
       phoneNumber: {}
     }
   },
@@ -47,7 +47,12 @@ const App = React.createClass({
 
 
 
+  changePage: function(event) {
+    event.preventDefault();
+    this.setState({change: !this.state.change})
+    console.log("changePage Pressed");
 
+  },
 
   // Login even triggered and sent to back-end
   componentWillMount : function() {
@@ -66,9 +71,14 @@ const App = React.createClass({
 
   // Renders App and all of its children
   render : function() {
-    return (
+
+    var firstView;
+
+
+      {if(this.state.change) {
+        firstView = <div>
       <div className="row">
-      <Veri> This is a child </Veri>
+      <Veri> This is a child of Veri </Veri>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
@@ -88,9 +98,15 @@ const App = React.createClass({
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
-      </div>
+      </div> </div>
+
+    } else {
+      firstView= <div>'Hello'</div>
+    }
+      return (
+      <div>  {firstView} </div>
     )
-  }
+  }}
 })
 
 /* React router initialization */
