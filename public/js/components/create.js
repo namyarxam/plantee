@@ -31,7 +31,9 @@ const Create = React.createClass({
 
     var msg;
     {if(this.state.checked) {
-      msg = <Veri text={'Your verification code is '} code={'code'}/>
+      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" >
+      <input type="Submit" value="Got It" />
+       </form> </div> 
     }
     else {
       msg = <Veri details={''}/>
@@ -44,6 +46,7 @@ const Create = React.createClass({
 
       <h2>Please Enter Your Phone Number</h2>
       <p>You will recieve a phone call in order to verify that you are capable of raising a plantee</p>
+
 
 
       <form className="telephoneNumber" onSubmit={this.handleCheck}>

@@ -9,11 +9,12 @@ const Veri = React.createClass({
 
 
 
+
   render : function() {
     return(
   <div>
     <div>{this.props.text}{this.props.code}</div>
-
+    
 
 </div>
   )
