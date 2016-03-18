@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "bundle": "watchify -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d"
+    "bundle": "watchify -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d",
+    "deploy": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ react es2015 ] ] -t uglifyify -d -p [ minifyify --no-map ] ./public/js/app.js -o ./public/bundle.js" 
   },
   "repository": {
     "type": "git",
