@@ -47,10 +47,10 @@ const App = React.createClass({
 
 
 
-  changePage: function(event) {
+  changeHPage: function changeHPage(event) {
     event.preventDefault();
     this.setState({change: !this.state.change})
-    console.log("changePage Pressed");
+    console.log("changePage On HomePage Pressed");
 
   },
 
@@ -107,7 +107,12 @@ const App = React.createClass({
       <div>  {firstView} </div>
     )
   }}
+
 })
+
+
+
+
 
 /* React router initialization */
 var routes = (
@@ -126,3 +131,5 @@ var routes = (
 )
 
 ReactDOM.render(routes, document.querySelector('#container'))
+
+module.exports.changeHPage= changeHPage;

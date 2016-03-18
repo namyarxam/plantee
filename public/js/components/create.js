@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
 const Veri = require('./veri.js');
+const App = require('../app.js');
 
 
 const Create = React.createClass({
@@ -12,6 +13,7 @@ const Create = React.createClass({
   handleClick: function(event) {
     event.preventDefault();
     this.setState({checked: !this.state.checked})
+
     let phonenumber = {
       phonenumber: this.refs.phonenumber.value
     }
@@ -24,7 +26,7 @@ const Create = React.createClass({
 
   },
 
-  changePage: function(event) {
+  changeHPage: function(event) {
     event.preventDefault();
     this.setState({change: !this.state.change})
     console.log("changePage Pressed");
@@ -35,7 +37,7 @@ const Create = React.createClass({
 
     var msg;
     {if(this.state.checked) {
-      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" onSubmit={this.changePage} >
+      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" onSubmit={this.changeHPage} >
       <input type="Submit" value="Got It" />
        </form> </div>
     }

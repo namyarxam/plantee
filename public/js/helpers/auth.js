@@ -65,7 +65,7 @@ function loginRequest(email, pass, cb) {
     })
 }
 
-// Takes signup request and adds new information to back-end database 
+// Takes signup request and adds new information to back-end database
 function signupRequest(email, pass, cb) {
   $.post('/users/signup', {email: email, password: pass})
     .done((data)=>{
