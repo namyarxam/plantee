@@ -15,8 +15,8 @@ const Create = React.createClass({
     let phonenumber = {
       phonenumber: this.refs.phonenumber.value
     }
-      console.log(phonenumber);
-]    this.refs.showVerification.reset()
+
+    console.log(phonenumber);
   },
 
   showVerification : function(event) {
