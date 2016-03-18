@@ -9,22 +9,19 @@ const Create = React.createClass({
   getInitialState: function(){
     return {checked: false}
   },
-  handleCheck: function(event) {
+  handleClick: function(event) {
     event.preventDefault();
     this.setState({checked: !this.state.checked})
-  },
-
-
-
-  showVerification : function(event) {
-    event.preventDefault();
     let phonenumber = {
       phonenumber: this.refs.phonenumber.value
     }
+      console.log(phonenumber);
+]    this.refs.showVerification.reset()
+  },
 
-    console.log(phonenumber);
-    this.props.showVer(phonenumber)
-    this.refs.showVerification.reset()
+  showVerification : function(event) {
+    event.preventDefault();
+
   },
 
   render : function(){
@@ -33,7 +30,7 @@ const Create = React.createClass({
     {if(this.state.checked) {
       msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" >
       <input type="Submit" value="Got It" />
-       </form> </div> 
+       </form> </div>
     }
     else {
       msg = <Veri details={''}/>
@@ -49,7 +46,7 @@ const Create = React.createClass({
 
 
 
-      <form className="telephoneNumber" onSubmit={this.handleCheck}>
+      <form className="telephoneNumber" onSubmit={this.handleClick}>
          <input id="phonenumber" ref="phonenumber" type="tel" />
          <input type="Submit" />
        </form>
