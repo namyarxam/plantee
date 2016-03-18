@@ -13,7 +13,7 @@ let sendText = (recNum, text) => {
   // Send a text message (text) to recipient (recNum)
   client.sendMessage({
       to: recNum,
-      from: '+16467629065',
+      from: '+19179098279',
       body: text
   }, function(err, responseData) {
             if (!err) {

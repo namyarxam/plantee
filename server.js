@@ -10,8 +10,6 @@ const logger = require('morgan');
 const path = require('path');
 /* BODYPARSER: Middleware to parse request body for back-end */
 const bodyParser = require('body-parser');
-/* DB: Relative path to our back-end postgreSQL file */
-const db = require('./db/pg');
 /* PG-PROMISE: Query formatting / backend manipulation for postgreSQL */ 
 const pgp = require('pg-promise')({});
 /* BCRYPT: Module for password hashing methods */
@@ -23,7 +21,9 @@ const hash = bcrypt.hashSync('B4c0/\/', salt);
 /* TWILIO: Relative path to our twilio API methods */
 const twilio = require('./public/js/twil.js');
 /* USERROUTES: Relative path to our UserAuth Route */
-const usersRoutes     = require('./routes/users');
+const usersRoutes = require('./routes/users');
+/* PLANTEEROUTES: Relative path to our DB integrated route */
+const planteeRoutes = require('./routes/plantee');
 
 /* TWILIO API AUTHENTICATION */
 const accountSid = process.env.ACCOUNT_SID;
@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')))
 app.use(logger('dev'));
 app.use('/users', usersRoutes);
+app.use('/plantee', planteeRoutes);
 
 /* HOME ROUTE */
 app.get('/', (req, res)=>{
