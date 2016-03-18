@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "bundle": "watchify -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d"
+    "bundle": "watchify -t [ babelify --presets [ react es2015 ] ] ./public/js/app.js -o public/bundle.js -d",
+    "deploy": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ react es2015 ] ] -t uglifyify -d -p [ minifyify --no-map ] ./public/js/app.js -o ./public/bundle.js" 
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "jsonwebtoken": "^5.7.0",
     "morgan": "^1.7.0",
     "path": "^0.12.7",
+    "pg": "^4.5.1",
     "pg-promise": "^3.3.0",
     "pryjs": "^0.1.3",
     "react": "^0.14.7",
