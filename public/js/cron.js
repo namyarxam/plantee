@@ -37,6 +37,41 @@ var quartr = new CronJob({
 });
 quartr.start();
 -----------------------------------
+//every 20 min, mon thru sun between 9am and 4pm
+var every_20 = new CronJob({
+  cronTime: '00 00 09 * * 1-7'
+  cronTime: '00 20 09 * * 1-7'
+  cronTime: '00 40 09 * * 1-7'
+  cronTime: '00 00 10 * * 1-7'
+  cronTime: '00 20 10 * * 1-7'
+  cronTime: '00 40 10 * * 1-7'
+  cronTime: '00 3 11 * * 1-7'
+  cronTime: '00 45 11 * * 1-7'
+  cronTime: '00 00 11 * * 1-7'
+  cronTime: '00 15 12 * * 1-7'
+  cronTime: '00 30 12 * * 1-7'
+  cronTime: '00 45 12 * * 1-7'
+  cronTime: '00 00 13 * * 1-7'
+  cronTime: '00 15 14 * * 1-7'
+  cronTime: '00 30 14 * * 1-7'
+  cronTime: '00 45 14 * * 1-7'
+  cronTime: '00 00 14 * * 1-7'
+  cronTime: '00 15 15 * * 1-7'
+  cronTime: '00 30 15 * * 1-7'
+  cronTime: '00 45 15 * * 1-7'
+  cronTime: '00 00 15 * * 1-7'
+  cronTime: '00 15 16 * * 1-7'
+  cronTime: '00 30 16 * * 1-7'
+  cronTime: '00 45 16 * * 1-7'
+  cronTime: '00 00 16 * * 1-7'
+
+  onTick: function(){
+    },
+    start: false,
+    timeZone: 'America/New_York'
+});
+every_20.start();
+-----------------------------------
 //
 
 var half = new CronJob({
@@ -141,37 +176,3 @@ var good_night = new CronJob({
 });
 good_night.start();
 --------------------------------------
-//every 20 min, mon thru sun between 9am and 4pm
-var every_20 = new CronJob({
-  cronTime: '00 00 09 * * 1-7'
-  cronTime: '00 20 09 * * 1-7'
-  cronTime: '00 40 09 * * 1-7'
-  cronTime: '00 00 10 * * 1-7'
-  cronTime: '00 20 10 * * 1-7'
-  cronTime: '00 40 10 * * 1-7'
-  cronTime: '00 3 11 * * 1-7'
-  cronTime: '00 45 11 * * 1-7'
-  cronTime: '00 00 11 * * 1-7'
-  cronTime: '00 15 12 * * 1-7'
-  cronTime: '00 30 12 * * 1-7'
-  cronTime: '00 45 12 * * 1-7'
-  cronTime: '00 00 13 * * 1-7'
-  cronTime: '00 15 14 * * 1-7'
-  cronTime: '00 30 14 * * 1-7'
-  cronTime: '00 45 14 * * 1-7'
-  cronTime: '00 00 14 * * 1-7'
-  cronTime: '00 15 15 * * 1-7'
-  cronTime: '00 30 15 * * 1-7'
-  cronTime: '00 45 15 * * 1-7'
-  cronTime: '00 00 15 * * 1-7'
-  cronTime: '00 15 16 * * 1-7'
-  cronTime: '00 30 16 * * 1-7'
-  cronTime: '00 45 16 * * 1-7'
-  cronTime: '00 00 16 * * 1-7'
-
-  onTick: function(){
-    },
-    start: false,
-    timeZone: 'America/New_York'
-});
-every_20.start();
