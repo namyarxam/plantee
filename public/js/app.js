@@ -26,7 +26,7 @@ const Signup = require('./components/signup.js');
 const Header = require('./components/header.js');
 const Create = require('./components/create.js');
 const NotFound = require('./components/notfound.js');
-const Verification = require('./components/verification.js');
+const Veri = require('./components/veri.js');
 
 
 /* React App Creation */
@@ -35,7 +35,8 @@ const App = React.createClass({
   getInitialState : function() {
     return {
       loggedIn: auth.loggedIn(),
-      verification: ''
+      veri: false,
+      phoneNumber: {}
     }
   },
   // Updates state when login is trigger
@@ -54,10 +55,21 @@ const App = React.createClass({
     auth.onChange = this.updateAuth
     auth.login()
   },
+
+
+  addNumber: function(phonenumber){
+
+    this.state.phonenumber = phonenumber
+    this.setState()
+
+  },
+
+
   // Renders App and all of its children
   render : function() {
     return (
       <div className="row">
+      <Veri addNumber={this.addNumber}/>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
@@ -91,7 +103,7 @@ var routes = (
       <Route path="create" component={Create} />
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
-      <Route path="create/verification" component={Verification} />
+      <Route path="very" component={Veri} />
       <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
     <Route path="*" component={NotFound} />

@@ -5,10 +5,14 @@ var auth = require('../helpers/auth')
 
 
 
-const Verification = React.createClass({
+const Veri = React.createClass({
   render : function() {
-    return <h1>Verification Code</h1>
+    return(
+  <div>
+    <h1>hello</h1>
+</div>
+  )
   }
 })
 
-module.exports = Verification;
+module.exports = Veri;

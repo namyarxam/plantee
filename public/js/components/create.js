@@ -1,19 +1,27 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
-const Verification = require('./verification.js');
+const Veri = require('./veri.js');
 
 
 const Create = React.createClass({
 
-  showVerification : function() {
-    return (<Verification />)
+  showVerification : function(event) {
+    event.preventDefault();
+    let phonenumber = {
+      phonenumber: this.refs.phonenumber.value
+    }
+
+    console.log(phonenumber);
+    this.props.addNumber(phonenumber)
+    this.refs.showVerification.reset()
   },
 
   render : function(){
     return (
 
       <div>
+
       <h1>Create Your Plantee</h1>
 
       <h2>Please Enter Your Phone Number</h2>
@@ -21,7 +29,7 @@ const Create = React.createClass({
 
 
       <form className="telephoneNumber" onSubmit={this.showVerification}>
-         <input type="tel" />
+         <input id="phonenumber" ref="phonenumber" type="tel" />
          <input type="Submit" />
        </form>
 

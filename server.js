@@ -46,9 +46,9 @@ app.get('/', (req, res)=>{
   res.sendFile('index.html')
 });
 
-app.get('*', (req, res)=>{
-  res.render('index.html')
-});
+// app.get('*', (req, res)=>{
+//   res.render('index.html')
+// });
 
 /* SERVER INITIALIZATION */
 app.listen(3000 , ()=> console.log(`Server initialized on // ${new Date()}`));
