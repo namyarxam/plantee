@@ -31,16 +31,15 @@ const Create = React.createClass({
 
     var msg;
     {if(this.state.checked) {
-      msg = <Veri stuff={'code'}/>
+      msg = <Veri text={'Your verification code is '} code={'code'}/>
     }
     else {
-      msg = <Veri stuff={'blank'}/>
+      msg = <Veri details={''}/>
     }}
 
     return (
 
       <div>
-      <div>Your verification code is {msg} </div>
       <h1>Create Your Plantee</h1>
 
       <h2>Please Enter Your Phone Number</h2>
@@ -51,6 +50,8 @@ const Create = React.createClass({
          <input id="phonenumber" ref="phonenumber" type="tel" />
          <input type="Submit" />
        </form>
+       <div> {msg} </div>
+
        <h3>{this.props.children}</h3>
 
 

@@ -12,9 +12,7 @@ const Veri = React.createClass({
   render : function() {
     return(
   <div>
-    <div>verification component</div>
-    <div>{this.props.children}</div>
-    <div>{this.props.stuff}</div>
+    <div>{this.props.text}{this.props.code}</div>
 
 
 </div>
