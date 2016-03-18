@@ -6,7 +6,7 @@
 const React = require('react');
 // React-DOM for HTML rendering
 const ReactDOM = require('react-dom');
-// React router for dynamic pathing. Has several component features that need to be required to use. 
+// React router for dynamic pathing. Has several component features that need to be required to use.
 const ReactRouter = require('react-router');
 // 4 components pulled from ReactRouter:
 const Router = ReactRouter.Router;
@@ -19,19 +19,23 @@ const browserHistory = ReactRouter.browserHistory;
 const auth = require('./helpers/auth.js');
 const requireAuth = require('./helpers/requireauth.js');
 const About = require('./components/about.js');
-const Dashboard = require('./components/dashboard.js');
 const Login = require('./components/login.js');
 const Logout = require('./components/logout.js');
 const Signup = require('./components/signup.js');
 const Header = require('./components/header.js');
 const Create = require('./components/create.js');
+const NotFound = require('./components/notfound.js');
+const Veri = require('./components/veri.js');
+
 
 /* React App Creation */
 const App = React.createClass({
   // Declares the initial state when app is loaded
   getInitialState : function() {
     return {
-      loggedIn: auth.loggedIn()
+      loggedIn: auth.loggedIn(),
+      change: true,
+      phoneNumber: {}
     }
   },
   // Updates state when login is trigger
@@ -40,15 +44,41 @@ const App = React.createClass({
       loggedIn: loggedIn
     })
   },
-  // Login even triggered and sent to back-end 
+
+
+
+  changePage: function(event) {
+    event.preventDefault();
+    this.setState({change: !this.state.change})
+    console.log("changePage Pressed");
+
+  },
+
+  // Login even triggered and sent to back-end
   componentWillMount : function() {
     auth.onChange = this.updateAuth
     auth.login()
   },
+
+
+  addNumber: function(phonenumber){
+
+    this.state.phonenumber = phonenumber
+    this.setState()
+
+  },
+
+
   // Renders App and all of its children
   render : function() {
-    return (
+
+    var firstView;
+
+
+      {if(this.state.change) {
+        firstView = <div>
       <div className="row">
+      <Veri> This is a child of Veri </Veri>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
@@ -56,6 +86,7 @@ const App = React.createClass({
               <div>
                 <li><Link to="/logout">Log out</Link> </li>
                 <li><Link to="/create">Create Your Plantee</Link></li>
+                {/*<Create> <Veri/> </Create>*/}
              </div>
             ) : (
               <div>
@@ -67,9 +98,15 @@ const App = React.createClass({
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
-      </div>
+      </div> </div>
+
+    } else {
+      firstView= <div>'Hello'</div>
+    }
+      return (
+      <div>  {firstView} </div>
     )
-  }
+  }}
 })
 
 /* React router initialization */
@@ -80,11 +117,11 @@ var routes = (
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
       <Route path="create" component={Create} />
-
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
+      <Route path="very" component={Veri} />
     </Route>
+    <Route path="*" component={NotFound} />
   </Router>
 )
 

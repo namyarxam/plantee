@@ -10,8 +10,6 @@ const logger = require('morgan');
 const path = require('path');
 /* BODYPARSER: Middleware to parse request body for back-end */
 const bodyParser = require('body-parser');
-/* PG-PROMISE: Query formatting / backend manipulation for postgreSQL */ 
-const pgp = require('pg-promise')({});
 /* BCRYPT: Module for password hashing methods */
 const bcrypt = require('bcrypt');
 /* SALT: First layer of password hashing - number of hash iterations */
@@ -46,6 +44,10 @@ app.use('/plantee', planteeRoutes);
 app.get('/', (req, res)=>{
   res.sendFile('index.html')
 });
+
+// app.get('*', (req, res)=>{
+//   res.render('index.html')
+// });
 
 /* SERVER INITIALIZATION */
 app.listen(3000 , ()=> console.log(`Server initialized on // ${new Date()}`));
