@@ -19,7 +19,6 @@ const browserHistory = ReactRouter.browserHistory;
 const auth = require('./helpers/auth.js');
 const requireAuth = require('./helpers/requireauth.js');
 const About = require('./components/about.js');
-const Dashboard = require('./components/dashboard.js');
 const Login = require('./components/login.js');
 const Logout = require('./components/logout.js');
 const Signup = require('./components/signup.js');
@@ -69,7 +68,7 @@ const App = React.createClass({
   render : function() {
     return (
       <div className="row">
-      <Veri addNumber={this.addNumber}/>
+      <Veri> This is a child </Veri>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
@@ -77,6 +76,7 @@ const App = React.createClass({
               <div>
                 <li><Link to="/logout">Log out</Link> </li>
                 <li><Link to="/create">Create Your Plantee</Link></li>
+                {/*<Create> <Veri/> </Create>*/}
              </div>
             ) : (
               <div>
@@ -104,7 +104,6 @@ var routes = (
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
       <Route path="very" component={Veri} />
-      <Route path="dashboard" component={Dashboard} onEnter={requireAuth} />
     </Route>
     <Route path="*" component={NotFound} />
   </Router>

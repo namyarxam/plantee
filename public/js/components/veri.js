@@ -6,10 +6,15 @@ var auth = require('../helpers/auth')
 
 
 const Veri = React.createClass({
+    
+
+
   render : function() {
     return(
   <div>
-    <h1>hello</h1>
+    <h1>verification component</h1>
+    <h3>{this.props.children}</h3>
+
 </div>
   )
   }
