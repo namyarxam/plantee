@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const db = require('../db/plantee_pg');
 const plantee = express.Router();
+const twilio = require('../public/js/twil.js');
 
 /* plantee home route */
 plantee.route('/')
@@ -34,5 +35,15 @@ plantee.route('/:id/messages')
 	.post(db.addMessage, (req, res) => {
 		res.status(201).json({data: 'success'});
 	})
+
+plantee.get('/verify', codePass, (req, res) => {
+	res.send(req.code);
+});
+
+function codePass(req, res, next) {
+	let name = req.query.name;
+	let num = req.query.num; 
+	twilio.verifyPhone(name, num, next, req); 
+}
 
 module.exports = plantee; 
