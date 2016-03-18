@@ -1,4 +1,4 @@
-/* GLOBAL REQUIRES: See `../server.js` */ 
+/* GLOBAL REQUIRES: See `../server.js` */
 const pgp         = require('pg-promise')({});
 const bcrypt      = require('bcrypt');
 const salt        = bcrypt.genSaltSync(10);
@@ -16,6 +16,11 @@ const cn = {
 /* Create link from PGP to our database */
 const db = pgp(cn)
 
+
+
+
+
+
 /* CREATESECURE: Uses bcrypt, hash, salt, to create hash for database storage */
 function createSecure(email, password, callback){
   bcrypt.genSalt(password, salt, function(err, hash){
@@ -28,7 +33,7 @@ function createSecure(email, password, callback){
 /* Creates user from HTML input fields and stores them in the database using createSecure for password_digest */
 function createUser(req, res, next) {
   createSecure(req.body.email, req.body.password, saveUser)
-  // saveUser: Query to store user in database 
+  // saveUser: Query to store user in database
   function saveUser(email, hash) {
     db.none('INSERT INTO users (email, password_digest) VALUES ($1, $2) returning *', [email, hash])
     .then((data)=>{
