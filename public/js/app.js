@@ -30,6 +30,10 @@ const Veri = require('./components/veri.js');
 
 /* React App Creation */
 const App = React.createClass({
+
+
+
+
   // Declares the initial state when app is loaded
   getInitialState : function() {
     return {
@@ -38,6 +42,10 @@ const App = React.createClass({
       phoneNumber: {}
     }
   },
+
+
+
+
   // Updates state when login is trigger
   updateAuth : function(loggedIn) {
     this.setState({
@@ -47,12 +55,17 @@ const App = React.createClass({
 
 
 
-  changeHPage: function changeHPage(event) {
+  changeHPage: function(event) {
     event.preventDefault();
-    this.setState({change: !this.state.change})
+    this.setState({
+      change: !this.state.change
+    });
     console.log("changePage On HomePage Pressed");
-
+    // this.context.router.push('/')
   },
+
+
+
 
   // Login even triggered and sent to back-end
   componentWillMount : function() {
@@ -72,14 +85,24 @@ const App = React.createClass({
   // Renders App and all of its children
   render : function() {
 
+    <div className="Detail">
+        {this.props.children && React.cloneElement(this.props.children, {
+          globalState: this.state
+        })}
+      </div>
+
     var firstView;
 
 
       {if(this.state.change) {
         firstView = <div>
+
+
       <div className="row">
       <Veri> This is a child of Veri </Veri>
+      {this.props.children}
       <Header details="Hi, I'm Plantee"/>
+
         <section className="col s12">
         <ul>
             {this.state.loggedIn ? (
@@ -98,14 +121,20 @@ const App = React.createClass({
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
-      </div> </div>
+      </div>
+
+
+
+      </div>
 
     } else {
       firstView= <div>'Hello'</div>
     }
-      return (
-      <div>  {firstView} </div>
-    )
+      return React.cloneElement(
+        firstView,
+        {changeHPage: this.changeHPage}
+      )
+
   }}
 
 })
@@ -121,7 +150,7 @@ var routes = (
     <Route path="header" component={Header} />
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
-      <Route path="create" component={Create} />
+      <Route path="create" component={Create}  />
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
       <Route path="very" component={Veri} />
@@ -131,5 +160,3 @@ var routes = (
 )
 
 ReactDOM.render(routes, document.querySelector('#container'))
-
-module.exports.changeHPage= changeHPage;
