@@ -3,7 +3,7 @@ const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
 
 
-const NotFound = React.createClass({
+const Plantee = React.createClass({
   render : function() {
     return (
 
@@ -17,4 +17,4 @@ const NotFound = React.createClass({
   }
 })
 
-module.exports = NotFound;
+module.exports = Plantee;

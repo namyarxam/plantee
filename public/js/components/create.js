@@ -3,13 +3,22 @@ const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
 const Veri = require('./veri.js');
 const App = require('../app.js');
+const ReactRouter = require('react-router');
+
+const Link = ReactRouter.Link;
+const Router = ReactRouter.Router;
+const Route = ReactRouter.Route;
+const Navigation = ReactRouter.Navigation;
+
 
 
 const Create = React.createClass({
 
   getInitialState: function(){
-    return {checked: false}
+    return {checked: true}
   },
+
+
   handleClick: function(event) {
     event.preventDefault();
     this.setState({checked: !this.state.checked})
@@ -26,28 +35,24 @@ const Create = React.createClass({
 
   },
 
-  changeHPage: function(event) {
-    event.preventDefault();
-    this.setState({change: !this.state.change})
-    console.log("changePage Pressed");
-
-  },
 
   render : function(){
 
     var msg;
     {if(this.state.checked) {
-      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" onSubmit={this.changeHPage} >
-      <input type="Submit" value="Got It" />
-       </form> </div>
+      msg = <div><Veri text={'Your verification code is '}  code={'code'}/>
+
+      <button><Link to="plantee">Plante Me</Link></button>
+
+       </div>
     }
     else {
       msg = <Veri details={''}/>
     }}
 
     return (
-
       <div>
+
       <h1>Create Your Plantee</h1>
 
       <h2>Please Enter Your Phone Number</h2>
@@ -60,10 +65,7 @@ const Create = React.createClass({
          <input type="Submit" />
        </form>
        <div> {msg} </div>
-
-       <h3>{this.props.children}</h3>
-
-
+       {/*<h3>{this.props.children}</h3>*/}
        </div>
     )
   }

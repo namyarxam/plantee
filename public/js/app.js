@@ -26,6 +26,7 @@ const Header = require('./components/header.js');
 const Create = require('./components/create.js');
 const NotFound = require('./components/notfound.js');
 const Veri = require('./components/veri.js');
+const Plantee = require('./components/plantee.js');
 
 
 /* React App Creation */
@@ -37,7 +38,9 @@ const App = React.createClass({
       change: true,
       phoneNumber: {}
     }
+
   },
+
   // Updates state when login is trigger
   updateAuth : function(loggedIn) {
     this.setState({
@@ -45,14 +48,6 @@ const App = React.createClass({
     })
   },
 
-
-
-  changeHPage: function changeHPage(event) {
-    event.preventDefault();
-    this.setState({change: !this.state.change})
-    console.log("changePage On HomePage Pressed");
-
-  },
 
   // Login even triggered and sent to back-end
   componentWillMount : function() {
@@ -77,7 +72,12 @@ const App = React.createClass({
 
       {if(this.state.change) {
         firstView = <div>
+        {this.props.children}
+
+
+
       <div className="row">
+
       <Veri> This is a child of Veri </Veri>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
@@ -110,10 +110,6 @@ const App = React.createClass({
 
 })
 
-
-
-
-
 /* React router initialization */
 var routes = (
   <Router history={browserHistory}>
@@ -124,9 +120,9 @@ var routes = (
       <Route path="create" component={Create} />
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
-      <Route path="very" component={Veri} />
+      <Route path="veri" component={Veri} />
     </Route>
-    <Route path="*" component={NotFound} />
+    <Route path="plantee" component={Plantee} />
   </Router>
 )
 
