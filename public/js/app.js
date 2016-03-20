@@ -26,6 +26,8 @@ const Header = require('./components/header.js');
 const Create = require('./components/create.js');
 const NotFound = require('./components/notfound.js');
 const Veri = require('./components/veri.js');
+const Plantee = require('./components/plantee.js');
+const TeamBuilder = require('./components/teambuilder.js');
 
 /* React App Creation */
 const App = React.createClass({
@@ -37,18 +39,12 @@ const App = React.createClass({
       phoneNumber: {}
     }
   },
+
   // Updates state when login is trigger
   updateAuth : function(loggedIn) {
     this.setState({
       loggedIn: loggedIn
     })
-  },
-
-  changePage: function(event) {
-    event.preventDefault();
-    this.setState({change: !this.state.change})
-    console.log("changePage Pressed");
-
   },
 
   // Login even triggered and sent to back-end
@@ -57,7 +53,6 @@ const App = React.createClass({
     auth.login()
   },
 
-
   addNumber: function(phonenumber){
 
     this.state.phonenumber = phonenumber
@@ -65,17 +60,13 @@ const App = React.createClass({
 
   },
 
-
   // Renders App and all of its children
   render : function() {
-
     var firstView;
-
-
       {if(this.state.change) {
         firstView = <div>
+        {this.props.children}
       <div className="row">
-      <Veri> This is a child of Veri </Veri>
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>
@@ -96,7 +87,6 @@ const App = React.createClass({
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
       </div> </div>
-
     } else {
       firstView= <div>'Hello'</div>
     }
@@ -116,8 +106,10 @@ var routes = (
       <Route path="create" component={Create} />
       <Route path="signup" component={Signup} />
       <Route path="about" component={About} />
-      <Route path="very" component={Veri} />
+      <Route path="veri" component={Veri} />
     </Route>
+    <Route path="teambuilder" component={TeamBuilder} />
+    <Route path="plantee" component={Plantee} />
     <Route path="*" component={NotFound} />
   </Router>
 )

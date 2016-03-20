@@ -30,7 +30,11 @@ let verifyPhone = (name, phoneNum, next, req) => {
       friendlyName: name,
       phoneNumber: phoneNum
   }, function(err, callerId) {
-       req.code = callerId.validation_code;
+       if(callerId) {
+         req.code = callerId.validation_code;
+       } else {
+         req.code = 'Error validating phone number.'
+       }
        next();
   });
 }
