@@ -17,7 +17,17 @@ const TeamBuilder = React.createClass({
   getInitialState: function(){
     return {friends: {}}
   },
+  
+  componentDidMount: function() {
+    $.get('users/friends').done( data=>{
+      data.forEach( el=> {
+        this.state.friends[el.friend_name] = el;
+      });
 
+      this.setState({friends:this.state.friends})
+    })
+
+  },
 
 
   addFriend : function(newFriend) {

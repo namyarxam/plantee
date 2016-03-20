@@ -42,6 +42,9 @@ const App = React.createClass({
 
   },
 
+
+  
+
   // Updates state when login is trigger
   updateAuth : function(loggedIn) {
     this.setState({
