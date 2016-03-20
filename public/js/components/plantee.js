@@ -9,8 +9,10 @@ const Plantee = React.createClass({
 
 <div>
 
-      <h1>Thank you for planting me!</h1>
+      <h1>I'm Plantee. Thank you for buying me!</h1>
 
+      <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Hello</span></div>;
+    )
 </div>
 
     )

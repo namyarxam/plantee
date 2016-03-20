@@ -14,7 +14,7 @@ const Veri = React.createClass({
     return(
   <div>
     <div>{this.props.text}{this.props.code}</div>
-    
+
 
 </div>
   )
