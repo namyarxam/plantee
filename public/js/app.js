@@ -27,6 +27,7 @@ const Create = require('./components/create.js');
 const NotFound = require('./components/notfound.js');
 const Veri = require('./components/veri.js');
 const Plantee = require('./components/plantee.js');
+const TeamBuilder = require('./components/teambuilder.js');
 
 
 /* React App Creation */
@@ -122,9 +123,9 @@ var routes = (
       <Route path="veri" component={Veri} />
     </Route>
     <Route path="plantee" component={Plantee} />
+    <Route path="teambuilder" component={TeamBuilder} />
+
   </Router>
 )
 
 ReactDOM.render(routes, document.querySelector('#container'))
-
-module.exports.changeHPage= changeHPage;

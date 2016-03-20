@@ -1,8 +1,12 @@
+const React = require('react');
+const ReactDOM = require('react-dom');
+const auth = require('../helpers/auth')
+
 const planteeMainPic = React.createClass({
   render : function() {
 
     return (
-      <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Hello</span></div>
+      <div>this.props.source</div>
 
 
     )
