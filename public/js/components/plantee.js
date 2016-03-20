@@ -25,7 +25,7 @@ const Plantee = React.createClass({
 
               <Veri text={'Your verification code is '}  code={'on the way'}/>
 
-      <button><Link to="teamBuilder">Invite Friends</Link></button>
+      <button><Link to="teambuilder">Invite Friends</Link></button>
 
        </div>
     }
