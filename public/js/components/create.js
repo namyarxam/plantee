@@ -4,11 +4,18 @@ const auth = require('../helpers/auth')
 const Veri = require('./veri.js');
 const App = require('../app.js');
 
+const ReactRouter = require('react-router');
+// 4 components pulled from ReactRouter:
+const Router = ReactRouter.Router;
+const Route = ReactRouter.Route;
+const Navigation = ReactRouter.Navigation;
+const Link = ReactRouter.Link;
+const browserHistory = ReactRouter.browserHistory;
 
 const Create = React.createClass({
 
   getInitialState: function(){
-    return {checked: false}
+    return {checked: true}
   },
   handleClick: function(event) {
     event.preventDefault();
@@ -37,12 +44,16 @@ const Create = React.createClass({
 
     var msg;
     {if(this.state.checked) {
-      msg = <div><Veri text={'Your verification code is '}  code={'code'}/> <form className="gotIt" onSubmit={this.changeHPage} >
-      <input type="Submit" value="Got It" />
-       </form> </div>
+      msg = <div>
+
+              <Veri text={'Your verification code is '}  code={'code'}/>
+
+      <button><Link to="plantee">Plant Me</Link></button>
+
+       </div>
     }
     else {
-      msg = <Veri details={''}/>
+      msg = <Veri details={'on the way'}/>
     }}
 
     return (
@@ -62,7 +73,6 @@ const Create = React.createClass({
        <div> {msg} </div>
 
        <h3>{this.props.children}</h3>
-
 
        </div>
     )
