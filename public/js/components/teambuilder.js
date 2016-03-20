@@ -9,6 +9,7 @@ const Route = ReactRouter.Route;
 const Navigation = ReactRouter.Navigation;
 const Link = ReactRouter.Link;
 const browserHistory = ReactRouter.browserHistory;
+const Planteeimg = require('./planteeimg.js');
 
 
 
@@ -17,7 +18,9 @@ const TeamBuilder = React.createClass({
   render: function(){
     return(
 
-      <div>"Hello"</div>
+      <div>
+      <Planteeimg />
+      </div>
     )
   }
 });
