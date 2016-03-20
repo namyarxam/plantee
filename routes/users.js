@@ -22,6 +22,10 @@ users.route('/')
     res.status(201).json({data: 'success'});
   })
 
+  users.route('/friends')
+      .get( db.listAllFriends, (req,res)=>res.json(res.rows))
+      .post( db.addFriend, (req,res)=>res.json(res.rows))
+
 
 users.route('/createaccountscreen')
   // Path for user account creation view
@@ -42,7 +46,6 @@ users.route('/login')
     let token = jwt.sign(res.rows, secret);
     res.json({agent: res.rows, token: token});
   })
-
 
 
 module.exports = users;

@@ -1,8 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
-const planteeMainPic = require('./veri.js');
 const Veri = require('./veri.js');
+const Friend = require('./friend.js');
+
 const ReactRouter = require('react-router');
 // 4 components pulled from ReactRouter:
 const Router = ReactRouter.Router;
@@ -14,22 +15,43 @@ const browserHistory = ReactRouter.browserHistory;
 
 const TeamBuilder = React.createClass({
   getInitialState: function(){
-    return {members: {}}
+    return {friends: {}}
   },
 
 
-  handleSubmit: function(event){
-    event.preventDefault();
-    var beverage = {
-      name:  this.refs.friend_name.value,
-      phone_number: this.refs.phone_number.value
+
+  addFriend : function(newFriend) {
+      var updateData = (data)=>{
+        var newID = data.friend_name;
+        // var timestamp = (new Date()).getTime();
+        this.state.friends[newID] = newFriend;
+        this.setState({friends: this.state.friends});
+        console.log("inside updateData event handler")
+      }
+
+      $.post('/users/friends', newFriend)
+      .done(updateData)
+
+    },
+
+    handleSubmit: function(event){
+    event.preventDefault()
+
+    var friend = {
+      friend_name: this.refs.friend_name.value,
+      phone_number: this.refs.phone_number.value,
     }
-    // this.props.addBeverage(beverage);       // connection to addBeverage method in App Component
-    // this.refs.beverageForm.reset();         // clears Beverage Form input fields
+    this.addFriend(friend)
   },
 
+    renderFriend: function(key){
 
+      return(
+        <Friend index={key} key={key} details={this.state.friends[key]} />
 
+      )
+
+    },
 
 
 
@@ -42,13 +64,22 @@ const TeamBuilder = React.createClass({
     return (
 
 <div>
+<div>
+<ul className="collection with-header">
+                      <li className="collection-header"><h4>Friends </h4></li>
+                      {/* Open drinks go here*/}
+                      <Friend details={this.state.friends} />
+                      {Object.keys(this.state.friends).map(this.renderFriend)}
 
+                    </ul>
 
+                    </div>
       <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Add Some Friends!</span></div>
 
 
-      <form ref="beverageForm" onSubmit={this.handleSubmit}>
+      <form ref="friendForm" onSubmit={this.handleSubmit} >
             <h5>Invite Friends</h5>
+
 
             <div className="row">
               <div className="eight columns">
@@ -62,7 +93,7 @@ const TeamBuilder = React.createClass({
             </div>
 
             <div className="row">
-              <button className="button-primary" type="submit" name="action">Send Invite</button>
+              <button className="button-primary" type="submit" >Send Invite</button>
             </div>
           </form>
 </div>

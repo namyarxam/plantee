@@ -3,8 +3,6 @@ var ReactDOM = require('react-dom');
 var auth = require('../helpers/auth')
 
 
-
-
 const Veri = React.createClass({
 
 

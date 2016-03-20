@@ -65,8 +65,50 @@ function loginUser(req, res, next){
     })
 }
 
+//Adding friends to the database
+
+function listAllFriends(req, res, next){
+
+  db.any("SELECT * FROM friends;")
+    .then(function (data) {
+      res.rows = data;
+      next();
+    })
+    .catch(function (error) {
+      console.log('Error', error);
+    });
+}
+
+function addFriend(req, res, next){
+  db.one("INSERT INTO friends (friend_name, phone_number) VALUES ($1, $2) RETURNING friend_name, phone_number;", [req.body.friend_name, req.body.phone_number])
+  .then((data)=>{
+    console.log('ADDED FRIEND SUCCESSFUL');
+    res.rows = data;
+    next();
+  })
+  .catch((error)=>{
+    console.log('ERROR in ADDING FRIEND!', error);
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Exports: allows below to be seen outside of this file */
 module.exports.db = db;
 module.exports.pgp = pgp;
+module.exports.addFriend = addFriend
+module.exports.listAllFriends = listAllFriends
+
 module.exports.loginUser = loginUser
 module.exports.createUser = createUser
