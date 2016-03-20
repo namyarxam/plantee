@@ -1,26 +1,46 @@
 # project3
 3rd Project for WDI-GA-NYC
 
+Welcome to Plantee
+Make a plant grow beyond belief, alone or with friends, all done via text message!
 
-Welcome to e-Notary
-Make Custom Legally Binding Contracts Online
+Plantee is a cool friend in the form of a plant! It will keep you engaged throughout the day with reminders via text message,
+that it needs to be fed, loved, and kept happy. The user will create a plantee and allow other friends "gardeners"to aid him/her in the nourishment process of that specific plantee.
 
-e-Notary is a platform for connecting two parties who wish to create a legally binding contract between themselves. The user who wishes to create a contract(heretofore known as "the Originator") creates an e-Notary account and a user profile. The profile page contains button that allows users to create a customized contract with the click of a button.
+Plantee Creation:
 
-Contract Creation:
+When a user registers their account, they will be given a log in in order to create a profile.
+During the profile input process, they will need to input first and last name and cell phone.
+When they click submit, they will receive a verification code that needs to be inputted.
+As soon as it is received and inputted into the system, the user will see the plantee!
 
-When a user presses "Create New Contract" a form is generated that allows the originator to input the terms of his contract. The terms of the contract are then transferred onto a Docusign contract. At this point, the user has the option to view his newly created contract. He can download his contract or print his contract. Most importantly, he can press "Send Contract" and email a notification inviting his Counterparty to view the contract.
 
 Notification:
 
-The Counterparty (aka the Recipient) receives an email notifying him that he has been invited to sign a contract created by the Originator. The Recipient can then click on a link in his email that will take him to the e-Notary site where he can view a preview of the contract. In order to view the full contract, he can click "Sign Up" or "Sign In" Upon logging in to e-Notary he can view the contract and execute electronic signatures as provided for by the Docusign api. Generally, a user must both sign at the end of the contract and initial specified areas. The user is shown the exact locations in which they must give their electronic signature by the Docusign Api.
+The user will receive notifications from Plantee via text message periodically throughout the day via twillio.
+The user, based on plantees request, can send a response directly to plantee which will have either a positive or
+negative effect on the plant, thus, will effect the plantee's HP bar. Plantees HP bar can be set at 100, as you maintain
+plantee health well the bar will stay at 100. However, if you begin to neglect plantee, the HP bar will decrease gradually
+up until plantee dies. Thats a waste of life and money!
 
-Contract Storage:
+Gardeners:
 
-When the Counterparty has completed signing the form he presses "finished" and is redirected back to this profile page. At this point, an email notification is sent to the Originator that the contract has been signed.  On the profile page of both parties the contract is now displayed in the "My Contracts" section. A user has access to his contract anytime that that he is logged into his profile page. As users accumulate more contracts they will also be added to the "My Contracts" section of the Profile Page.
+The user will have the option to invite friends aka gardeners whom will have the same tasks as the user except
+they will work together in a group and be able to see all responses from each other rendered on the plantee page.
+This is where the interactive gameplay takes place, users and gardeners will both be responding to text messages
+and both parties will ultimately have an effect on plantee's health bar! How cool is that?!
+
+Text Storage:
+
+Will all be rendered on a page where all the users/gardeners can view the updates sent from the groups
+cell phones. That way the user can see which gardener is doing well and which one is doing poorly.. and hey
+maybe the whole team does well, but at least there will be a track record for accountability.
+
 
 Additional Features:
 
-In the future, users will be able to invite third parties to view specific contracts. In this way, the site will allow users to use the site as a base from which they can share, send, and store their contracts.
+In the future, users will be able to have multiple plantees and choose who they want to allocate certain
+responsibilities to. They will also be able to create farms with different kinds of plantees
+as well as create new jobs with new tasks, all allocated and distributed via text!
 
-Users may also be able to rate the degree to which their Counterparties honored their contracts, thus creating a "Reputation Rating" that will be visible to future people with whom the user seeks to initiate contracts.  
+Potential sync with facebook, so friends can see you are playing plantee!
