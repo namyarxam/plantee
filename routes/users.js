@@ -43,6 +43,4 @@ users.route('/login')
     res.json({agent: res.rows, token: token});
   })
 
-
-
 module.exports = users;

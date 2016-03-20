@@ -43,6 +43,24 @@ let addPlantee = (req, res, next) => {
 	});
 }
 
+let getAllGardeners = (req, res, next) => {
+	pg.connect(cs, (err, client, done) => {
+		if(err) {
+			done();
+			console.log(err);
+			return res.status(500).json({ success: false, data: err });
+		}
+		client.query('SELECT * FROM gardeners;', (err, results) => {
+			done();
+			if(err) {
+				return console.error('error running query', err);
+			}
+			res.rows = results.rows;
+			next();
+		});
+	});
+}
+
 let selectMyGardeners = (req, res, next) => {
 	pg.connect(cs, (err, client, done) => {
 		if(err) {
@@ -53,7 +71,7 @@ let selectMyGardeners = (req, res, next) => {
 		client.query(`SELECT g.name, g.phone FROM gardener g
 									LEFT JOIN  users_gardeners ug
 									ON  g.gardener_id = ug.gardener_id
-									WHERE ug.user_id = $1`, [req.body.user_id], (err, results) => {
+									WHERE ug.user_id = $1`, [req.params.id], (err, results) => {
 										done();
 										if(err) {
 											return console.error('error running query', err);
@@ -71,18 +89,11 @@ let addGardener = (req, res, next) => {
 			console.log(err);
 			return res.status(500).json({ success: false, data: err });
 		}
-		client.query('INSERT INTO gardeners (name, phone) VALUES ($1, $2) RETURNING gardener_id', [req.body.name, req.body.phone], (err, results) => {
+		client.query('INSERT INTO gardeners (name, phone) VALUES ($1, $2)', [req.body.name, req.body.phone], (err, results) => {
 			if(err) {
 				return console.error('error running query', err);
 			}
 			let gid = results.rows[0];
-		});
-		client.query('INSERT INTO users_gardener (gardener_id, user_id) VALUES ($1, $2)', [gid, req.query.user_id], (err, results) => {
-			done();
-			if(err) {
-				return console.error('error running query', err);
-			}
-			next();
 		});
 	});
 }
@@ -131,6 +142,12 @@ let addMessage = (req, res, next) => {
 	});
 }
 
+let addPresentation = (req, res, next) => {
+	console.log('do this later');
+}
+
+module.exports.addPresentation = addPresentation;
+module.exports.getAllGardeners = getAllGardeners;
 module.exports.findPlantees = findPlantees;
 module.exports.addPlantee = addPlantee; 
 module.exports.selectMyGardeners = selectMyGardeners;
