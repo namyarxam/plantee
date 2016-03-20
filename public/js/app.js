@@ -78,7 +78,7 @@ const App = React.createClass({
 
       <div className="row">
 
-      <Veri> This is a child of Veri </Veri>
+      {/*<Veri> This is a child of Veri </Veri>*/}
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">
         <ul>

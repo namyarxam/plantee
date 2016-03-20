@@ -15,7 +15,7 @@ const browserHistory = ReactRouter.browserHistory;
 const Create = React.createClass({
 
   getInitialState: function(){
-    return {checked: true}
+    return {checked: false}
   },
   handleClick: function(event) {
     event.preventDefault();
@@ -46,14 +46,14 @@ const Create = React.createClass({
     {if(this.state.checked) {
       msg = <div>
 
-              <Veri text={'Your verification code is '}  code={'code'}/>
+              <Veri text={'Your verification code is '}  code={'on the way'}/>
 
       <button><Link to="plantee">Plant Me</Link></button>
 
        </div>
     }
     else {
-      msg = <Veri details={'on the way'}/>
+      msg = <Veri details={''}/>
     }}
 
     return (

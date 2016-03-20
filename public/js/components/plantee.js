@@ -1,6 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
+const Veri = require('./veri.js');
 
 
 const Plantee = React.createClass({
@@ -11,8 +12,8 @@ const Plantee = React.createClass({
 
       <h1>I'm Plantee. Thank you for buying me!</h1>
 
-      <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Hello</span></div>;
-    )
+      <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Hello</span></div>
+
 </div>
 
     )
