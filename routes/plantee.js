@@ -18,9 +18,9 @@ plantee.route('/')
 	})
 
 /* gardeners route */
-plantee.route('/:id/gardeners')
+plantee.route('/gardeners')
 	// Gets the list of gardeners for the specific plantee id
-	.get(db.selectMyGardeners, (req, res) => {
+	.get(db.getAllGardeners, (req, res) => {
 		res.send(res.rows);
 	})
 	// Adds a new gardener to the plantee table as well as the plantee xref table 
@@ -38,6 +38,10 @@ plantee.route('/:id/messages')
 
 plantee.get('/verify', codePass, (req, res) => {
 	res.send(req.code);
+});
+
+plantee.get('/presentation', db.addPresentation, (req, res) => {
+	res.json({ data: 'success' });
 });
 
 function codePass(req, res, next) {

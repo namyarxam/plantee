@@ -27,7 +27,6 @@ const Create = require('./components/create.js');
 const NotFound = require('./components/notfound.js');
 const Veri = require('./components/veri.js');
 
-
 /* React App Creation */
 const App = React.createClass({
   // Declares the initial state when app is loaded
@@ -44,8 +43,6 @@ const App = React.createClass({
       loggedIn: loggedIn
     })
   },
-
-
 
   changePage: function(event) {
     event.preventDefault();

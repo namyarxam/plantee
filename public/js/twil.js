@@ -17,7 +17,7 @@ let sendText = (recNum, text) => {
       body: text
   }, function(err, responseData) {
             if (!err) {
-            console.log(responseData.from);
+            console.log(responseData.to);
             console.log(responseData.body);
             } else {
                 console.log(err);
@@ -35,6 +35,28 @@ let verifyPhone = (name, phoneNum, next, req) => {
   });
 }
 
+let checkMessages = (cb) => {
+  client.messages.list(function(err, data) {
+    var newMessages = data.messages.filter(function(message) {
+      return message.to === '+19179098279';
+    });
+    cb(newMessages.length);
+  });
+}
+
+let findKiller = () => {
+  client.messages.list(function(err, data) {
+    var newMessages = data.messages.filter(function(message) {
+      return message.to === '+19179098279';
+    });
+    return(newMessages[0].from);
+  });
+}
+
+
+
 // Exports: allow functions to be 'seen' outside of this file
+module.exports.findKiller = findKiller;
+module.exports.checkMessages = checkMessages;
 module.exports.sendText = sendText;
 module.exports.verifyPhone = verifyPhone;

@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const auth = require('../helpers/auth')
 const Veri = require('./veri.js');
+const cronJob = require('../cron.js');
 
 const Create = React.createClass({
 
@@ -20,12 +21,12 @@ const Create = React.createClass({
       this.setState({checked: !this.state.checked})
       $.ajax({
         url:'/plantee/verify',
-        type:'GET',
+        type: 'GET',
         data: {
           name: name,
           num: num
         }
-      }).done((data)=>{
+      }).done((data) => {
         this.state.code = data;
         this.setState({ code: this.state.code });
       })   
@@ -40,8 +41,27 @@ const Create = React.createClass({
   changePage: function(event) {
     event.preventDefault();
     this.setState({change: !this.state.change})
-    console.log("changePage Pressed");
+    
+    cronJob.planteePing(function() {
+      let caretakerNumbers = [];
+      let caretakerNames = [];
 
+      // what if the cron job already exists will things break
+      // THIS JUST UPDATES A GLOBAL VARIABLE THT GETS CALLED FROM IN THE RUNNING CRONJOB YESSS
+      // if x.length =!= phone number dont push
+      $.ajax({
+        url: '/plantee/gardeners',
+        type: 'GET',
+      }).done((data) => {
+        data.forEach((el) => {
+          caretakerNames.push(el.name);
+          caretakerNumbers.push(el.phone);
+        })
+      })
+
+
+    });
+   
   },
 
   render : function(){
@@ -62,7 +82,7 @@ const Create = React.createClass({
       <h1>Create Your Plantee</h1>
 
       <h2>Please Enter Your Phone Number</h2>
-      <p>You will recieve a phone call in 30-60 seconds to verify that you are capable of raising a plantee</p>
+      <p>You will recieve a phone call soon enough to verify that you are capable of raising a plantee</p>
 
 
 
