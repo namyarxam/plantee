@@ -65,7 +65,7 @@ const App = React.createClass({
     var firstView;
       {if(this.state.change) {
         firstView = <div>
-        {this.props.children}
+        {/*{this.props.children}*/}
       <div className="row">
       <Header details="Hi, I'm Plantee"/>
         <section className="col s12">

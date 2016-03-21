@@ -75,7 +75,7 @@ var job = new CronJob('0 * * * * *', function() {
 						}
 					});
 				});
-			} 
+			}
 			else {
 				pg.connect(cs, (err, client, done) => {
 					if(err) {
@@ -104,7 +104,7 @@ var job = new CronJob('0 * * * * *', function() {
   'America/Los_Angeles' /* Time zone of this job. */
 );
 
-	
+
 
 /* MODULE CONFIGURATION BOUND TO EXPRESS APP */
 app.use(bodyParser.urlencoded({ extended: false }));

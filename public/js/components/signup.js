@@ -40,9 +40,6 @@ const Signup = React.createClass({
         } else {
           this.context.router.replace('/')
         }
-
-
-
   },
 
   render : function() {

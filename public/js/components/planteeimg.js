@@ -20,7 +20,7 @@ const Planteeimg = React.createClass({
   render : function() {
     return (
 			  <div>
-				  <img src={'images/plantee.png'} alt="plantee" className=""/>
+				  <img src={'images/plantee.jpg'} alt="plantee" className=""/>
 	 		  </div>
     )
   }

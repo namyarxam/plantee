@@ -29,7 +29,7 @@ const Plantee = React.createClass({
     return (
 			<div>
      		 <h1>I'm Plantee. Thank you for buying me!</h1>
-				 <div><img src={'images/plantee.png'} alt="plantee" className=""/><span>Hello</span></div>
+				 <div><img src={'images/plantee.jpg'} alt="plantee" className=""/><span>Hello</span></div>
      	   <div>{team}</div>
 	  	</div>
     )

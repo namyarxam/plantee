@@ -13,11 +13,11 @@ const browserHistory = ReactRouter.browserHistory;
 
 const TeamBuilder = React.createClass({
   getInitialState: function() {
-    return { 
-    	friends: {} 
+    return {
+    	friends: {}
     }
   },
-  
+
   componentDidMount: function() {
     $.get('plantee/gardeners').done((data) => {
       data.forEach((el) => {
@@ -32,6 +32,8 @@ const TeamBuilder = React.createClass({
         var newID = data.friend_name;
         this.state.friends[newID] = newFriend;
         this.setState({friends: this.state.friends});
+        this.refs.friendForm.reset()
+
       }
 
       $.post('/plantee/gardeners', newFriend)

@@ -10,7 +10,7 @@ CREATE TABLE users (
   email VARCHAR(255),
   password_digest TEXT NOT NULL,
   phone VARCHAR(15),
-  plantee_hp INT DEFAULT 100 
+  plantee_hp INT DEFAULT 100
 );
 
 CREATE TABLE gardeners (

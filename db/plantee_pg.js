@@ -149,7 +149,7 @@ let addPresentation = (req, res, next) => {
 module.exports.addPresentation = addPresentation;
 module.exports.getAllGardeners = getAllGardeners;
 module.exports.findPlantees = findPlantees;
-module.exports.addPlantee = addPlantee; 
+module.exports.addPlantee = addPlantee;
 module.exports.selectMyGardeners = selectMyGardeners;
 module.exports.addGardener = addGardener;
 module.exports.selectPlanteeMessages = selectPlanteeMessages;
