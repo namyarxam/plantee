@@ -73,10 +73,7 @@ const App = React.createClass({
       {if(this.state.change) {
         firstView = <div>
       <div className="row">
-      <Header details="Hi, I'm Plantee"/>
-      <div >
-        <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
-      </div>
+
         <section className="col s12">
         <ul>
             {this.state.loggedIn ? (
@@ -95,7 +92,12 @@ const App = React.createClass({
         </ul>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
-      </div> </div>
+      </div>   <Header details="Hi, I'm Plantee"/>
+        <div >
+          <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
+        </div></div>
+
+
     } else {
       firstView= <div>'Hello'</div>
     }
