@@ -79,7 +79,8 @@ const TeamBuilder = React.createClass({
 
     let list = {
       listStyle: 'none',
-      margin: 'auto'
+      margin: 'auto',
+      color: 'white'
     }
 
     let title = {
@@ -104,8 +105,8 @@ const TeamBuilder = React.createClass({
                 </div>
   	       	 </div>
   	         <div className="row">
-  	           <button className="button-primary" type="submit" >Send Invite</button>
-               <button className="button-primary initiate" onClick={this.clickHandler} >Plant me!</button>``
+  	           <button className="button-primary" type="submit" >Send Invite</button> <br/>
+               <button className="button-primary initiate" onClick={this.clickHandler} >Click Here to Plant Your Plantee!</button>``
   	         </div>
 	         </form>
            <div>
