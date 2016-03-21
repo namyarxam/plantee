@@ -96,6 +96,7 @@ let addGardener = (req, res, next) => {
 				return console.error('error running query', err);
 			}
 			res.rows = results.rows;
+			next();
 		});
 	});
 }

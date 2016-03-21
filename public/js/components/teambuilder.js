@@ -27,19 +27,19 @@ const TeamBuilder = React.createClass({
     })
   },
 
-  addFriend : function(newFriend) {
+  addFriend: function(newFriend) {
       var updateData = (data) => {
         console.log('inside updatedata event handler');
         var newID = data.name;
         this.state.friends[newID] = newFriend;
-        this.setState({friends: this.state.friends});
+        this.setState({ friends: this.state.friends });
       }
 
       $.post('/plantee/gardeners', newFriend)
       .done(updateData);
   },
 
-  handleSubmit: function(event){
+  handleSubmit: function(event) {
     event.preventDefault()
 
     var name = this.refs.friend_name.value;
