@@ -62,9 +62,20 @@ const App = React.createClass({
 
   // Renders App and all of its children
   render : function() {
+
+    let style = {
+      fontSize: '14em',
+      display: inline:block,
+      color: green
+    };
+
+
+
     var firstView;
       {if(this.state.change) {
-        firstView = <div>
+        firstView =
+
+        <div style={style} className="firstView">
         {/*{this.props.children}*/}
       <div className="row">
       <Header details="Hi, I'm Plantee"/>
