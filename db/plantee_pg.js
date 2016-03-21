@@ -91,11 +91,11 @@ let addGardener = (req, res, next) => {
 			console.log(err);
 			return res.status(500).json({ success: false, data: err });
 		}
-		client.query('INSERT INTO gardeners (name, phone) VALUES ($1, $2)', [req.body.name, req.body.phone], (err, results) => {
+		client.query('INSERT INTO gardeners (name, phone) VALUES ($1, $2) RETURNING name, phone', [req.body.name, req.body.phone], (err, results) => {
 			if(err) {
 				return console.error('error running query', err);
 			}
-			let gid = results.rows[0];
+			res.rows = results.rows;
 		});
 	});
 }
