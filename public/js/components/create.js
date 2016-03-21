@@ -37,7 +37,7 @@ const Create = React.createClass({
       }).done((data) => {
         this.state.code = data;
         this.setState({ code: this.state.code });
-      })   
+      })
     }
   },
 
@@ -46,7 +46,17 @@ const Create = React.createClass({
 
   },
 
+
   render : function(){
+
+    let create = {
+      position: 'relative',
+      color:'green',
+      top: '150px',
+      textAlign: 'center'
+    }
+
+
     var msg;
     {if(this.state.checked) {
       msg = <div>
@@ -60,10 +70,10 @@ const Create = React.createClass({
 
     return (
 
-      <div>
-      <h1>Create Your Plantee</h1>
-      <h2>Please Enter Your Phone Number</h2>
-      <p>You will recieve a phone call soon enough to verify that you are capable of raising a plantee</p>
+      <div style={create}>
+
+      <p>Please Enter Your Phone Number.</p>
+      <p>You will recieve a phone call and your verification number will appear below.</p>
       <form className="telephoneNumber" onSubmit={this.handleClick}>
          <input id="planteename" placeholder="Plantee Name" ref="planteename" type="text" />
          <input id="phonenumber" placeholder="Phone #" ref="phonenumber" type="tel" />

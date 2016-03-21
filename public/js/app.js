@@ -79,6 +79,13 @@ const App = React.createClass({
       color: 'green'
     }
 
+    let frontImages = {
+      textAlign: 'center',
+      marginRight:'auto',
+      marginLeft: 'auto',
+      color: 'green'
+    }
+
 
     var firstView;
       {if(this.state.change) {
@@ -102,13 +109,14 @@ const App = React.createClass({
         </div>
         {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
         </section>
-
-
-      </div>   <Header details="Hi, I'm Plantee"/>
+        </div>
+        <div style={frontImages}>
+           <Header details="Hi, I'm Plantee"/>
         <div >
-          <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
-        </div></div>
-
+           <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
+        </div>
+        </div>
+        </div>
 
     } else {
       firstView= <div>'Hello'</div>
@@ -116,8 +124,11 @@ const App = React.createClass({
       return (
       <div>  {firstView} </div>
     )
+
   }}
+
 })
+
 
 /* React router initialization */
 var routes = (

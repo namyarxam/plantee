@@ -17,6 +17,13 @@ const Plantee = React.createClass({
   },
 
   render : function() {
+
+    let plantee = {
+      height: '15em',
+      width: '15em'
+    }
+
+
     var team;
     {if(this.state.checked) {
       team = <div>
@@ -26,10 +33,11 @@ const Plantee = React.createClass({
       team = <Veri details={'Here'}/>
     }}
 
+
     return (
 			<div>
      		 <h1>I'm Plantee. Thank you for buying me!</h1>
-				 <div><img src={'images/plantee.png'} alt="plantee" className=""/><span>Hello</span></div>
+				 <div><img style={plantee} src={'images/plantee.png'} alt="plantee" className=""/><span>Hello</span></div>
      	   <div>{team}</div>
 	  	</div>
     )

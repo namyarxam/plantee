@@ -13,11 +13,11 @@ const browserHistory = ReactRouter.browserHistory;
 
 const TeamBuilder = React.createClass({
   getInitialState: function() {
-    return { 
-    	friends: {} 
+    return {
+    	friends: {}
     }
   },
-  
+
   componentDidMount: function() {
     $.get('plantee/gardeners').done((data) => {
       data.forEach((el) => {
@@ -66,17 +66,31 @@ const TeamBuilder = React.createClass({
   },
 
   render: function() {
+
+    let planteeteambuilder = {
+      height: '15em',
+      width: '15em'
+    }
+
+    let drop = {
+      marginTop: '5em',
+      marginLeft: '25em'
+    }
+
+    let list = {
+      listStyle: 'none',
+      margin: 'auto'
+    }
+
+    let title = {
+      textDecoration: 'underline',
+      fontFamily: 'arial-black'
+    }
+
     return (
 			<div>
-				<div>
-					<ul className="collection with-header">
-            <li className="collection-header"><h4>Friends </h4></li>
-            <Friend details={this.state.friends} />
-            {Object.keys(this.state.friends).map(this.renderFriend)}
-          </ul>
-     		</div>
-      	<div>
-     			 <img src={'images/plantee.png'} alt="plantee" className=""/><span>Add Some Friends!</span></div>
+      	<div style={drop}>
+     			 <img style={planteeteambuilder} src={'images/plantee.png'} alt="plantee" className=""/><span>Add Some Friends!</span></div>
 					 <form ref="friendForm" onSubmit={this.handleSubmit} >
              <h5>Invite Friends</h5>
              <div className="row">
@@ -91,9 +105,16 @@ const TeamBuilder = React.createClass({
   	       	 </div>
   	         <div className="row">
   	           <button className="button-primary" type="submit" >Send Invite</button>
+               <button className="button-primary initiate" onClick={this.clickHandler} >Plant me!</button>``
   	         </div>
 	         </form>
-           <button className="button-primary initiate" onClick={this.clickHandler} >Plant me!</button>
+           <div>
+             <ul style={list} className="collection with-header">
+                <li className="collection-header"><h4 style={title}>Friends </h4></li>
+                <Friend details={this.state.friends} />
+                {Object.keys(this.state.friends).map(this.renderFriend)}
+              </ul>
+             </div>
 			</div>
     )
   }
