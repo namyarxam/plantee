@@ -48,7 +48,7 @@ const Signup = React.createClass({
   render : function() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label><input ref="email" placeholder="email" defaultValue="email@email.com" /></label>
+        <label><input ref="email" placeholder="email" /></label>
         <label><input ref="pass" placeholder="password" /></label> <br />
         <button type="submit">Sign Up</button>
         {this.state.error && (

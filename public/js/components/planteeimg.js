@@ -18,9 +18,15 @@ const Planteeimg = React.createClass({
   },
 
   render : function() {
+
+    let planteeimg = {
+      height: '15em',
+      width: '15em'
+    }
+
     return (
 			  <div>
-				  <img src={'images/plantee.png'} alt="plantee" className=""/>
+				  <img style={planteeimg} src={'images/plantee.png'} alt="plantee" className=""/>
 	 		  </div>
     )
   }
