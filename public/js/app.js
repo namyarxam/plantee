@@ -62,11 +62,21 @@ const App = React.createClass({
 
   // Renders App and all of its children
   render : function() {
+
+    let frontPageImage = {
+      height: '15em',
+      width: '15em'
+    }
+
+
     var firstView;
       {if(this.state.change) {
         firstView = <div>
       <div className="row">
       <Header details="Hi, I'm Plantee"/>
+      <div >
+        <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
+      </div>
         <section className="col s12">
         <ul>
             {this.state.loggedIn ? (
