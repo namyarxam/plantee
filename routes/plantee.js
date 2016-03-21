@@ -40,9 +40,10 @@ plantee.get('/verify', codePass, (req, res) => {
 	res.send(req.code);
 });
 
-plantee.get('/presentation', db.addPresentation, (req, res) => {
-	res.json({ data: 'success' });
+plantee.get('/initiatePlanteeGrow', db.startCron, (req, res) => {
+	res.status(201).json({ data: 'success' });
 });
+
 
 function codePass(req, res, next) {
 	let name = req.query.name;

@@ -54,13 +54,17 @@ const TeamBuilder = React.createClass({
   },
 
 	renderFriend: function(key) {
-		console.log(this.state.friends[key]);
 	  return (
 	    <Friend index={key} key={key} details={this.state.friends[key]} />
 	  )
 	},
 
-  render : function() {
+  clickHandler: function(e) {
+    $.get('/plantee/initiatePlanteeGrow');
+    $('.initiate').remove();
+  },
+
+  render: function() {
     return (
 			<div>
 				<div>
@@ -73,21 +77,22 @@ const TeamBuilder = React.createClass({
       	<div>
      			 <img src={'images/plantee.png'} alt="plantee" className=""/><span>Add Some Friends!</span></div>
 					 <form ref="friendForm" onSubmit={this.handleSubmit} >
-           <h5>Invite Friends</h5>
-           <div className="row">
-              <div className="eight columns">
-                <label htmlFor="friend_name">Friend Name</label>
-                <input className="u-full-width" type="text"  id="friend_name" ref="friend_name" />
-              </div>
-              <div className="three columns">
-                <label htmlFor="phone_number">Phone Number</label>
-                <input className="u-full-width" type="tel" min="0" step="0.01" id="phone_number" ref="phone_number" />
-              </div>
-	       	 </div>
-	         <div className="row">
-	           <button className="button-primary" type="submit" >Send Invite</button>
-	         </div>
+             <h5>Invite Friends</h5>
+             <div className="row">
+                <div className="eight columns">
+                  <label htmlFor="friend_name">Friend Name</label>
+                  <input className="u-full-width" type="text"  id="friend_name" ref="friend_name" />
+                </div>
+                <div className="three columns">
+                  <label htmlFor="phone_number">Phone Number</label>
+                  <input className="u-full-width" type="tel" min="0" step="0.01" id="phone_number" ref="phone_number" />
+                </div>
+  	       	 </div>
+  	         <div className="row">
+  	           <button className="button-primary" type="submit" >Send Invite</button>
+  	         </div>
 	         </form>
+           <button className="button-primary initiate" onClick={this.clickHandler} >Plant me!</button>
 			</div>
     )
   }
