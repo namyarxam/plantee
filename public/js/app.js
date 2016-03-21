@@ -114,6 +114,7 @@ render : function() {
            <Header details="Hi, I'm Plantee"/>
         <div >
            <img style={frontPageImage} src={'images/plantee.png'} alt="plantee" className=""/>
+           <a href="https://twitter.com/planteetheplant">Follow me on twitter!</a>
         </div>
         </div>
         </div>
