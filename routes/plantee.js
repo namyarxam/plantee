@@ -25,12 +25,12 @@ plantee.route('/gardeners')
 	})
 	// Adds a new gardener to the plantee table as well as the plantee xref table 
 	.post(db.addGardener, (req, res) => {
-		res.status(201).json({data: 'success'});
+		res.json(res.rows);
 	})
 
 plantee.route('/:id/messages')
 	.get(db.selectPlanteeMessages, (req, res) => {
-		res.send(res.rows);
+		res.json(res.rows);
 	})
 	.post(db.addMessage, (req, res) => {
 		res.status(201).json({data: 'success'});
@@ -40,9 +40,10 @@ plantee.get('/verify', codePass, (req, res) => {
 	res.send(req.code);
 });
 
-plantee.get('/presentation', db.addPresentation, (req, res) => {
-	res.json({ data: 'success' });
+plantee.get('/initiatePlanteeGrow', db.startCron, (req, res) => {
+	res.status(201).json({ data: 'success' });
 });
+
 
 function codePass(req, res, next) {
 	let name = req.query.name;

@@ -51,7 +51,7 @@ const Create = React.createClass({
     {if(this.state.checked) {
       msg = <div>
               <Veri text={'Your verification code is '}  code={this.state.code}/>
-              <button><Link to="plantee">Plant Me</Link></button>
+              <button><Link to="plantee">Im feeling Plantee</Link></button>
             </div>
     }
     else {
